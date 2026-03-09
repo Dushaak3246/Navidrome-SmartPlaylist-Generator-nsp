@@ -1,0 +1,28 @@
+{
+  "name": "All The Boys",
+  "comment": "From The Geto",
+  "any": [
+    {
+      "is": {
+        "albumartist": "Geto Boys"
+      }
+    },
+    {
+      "is": {
+        "albumartist": "Scarface"
+      }
+    },
+    {
+      "is": {
+        "albumartist": "Bushwick Bill"
+      }
+    },
+    {
+      "is": {
+        "albumartist": "Willie D"
+      }
+    }
+  ],
+  "sort": "year",
+  "order": "asc"
+}
