@@ -19,7 +19,7 @@ This tool guides you through building those JSON rules entirely through numbered
 
 ## Features
 
-- **30+ ready-made presets** — deploy instant playlists covering essentials, discovery, moods, decades, quality, and complex nested logic
+- **Nearly 300 ready-made presets** across 35 categories — deploy instant playlists covering essentials, discovery, moods, decades, genres, tempo, musical keys, lyrics, ReplayGain loudness, metadata completeness, and much more
 - **One-click deploy all** — save every preset at once with a single menu choice
 - **100+ fields** — every field Navidrome supports, from core metadata to MusicBrainz IDs and ReplayGain values
 - **Nested rule groups** — create sub-groups with their own AND/OR logic (e.g. "loved OR highly rated" inside an AND query)
@@ -349,36 +349,585 @@ Rule groups can be nested to any depth.
 Choose **Deploy preset playlists** from the main menu to instantly save ready-made `.nsp` files.
 You can deploy them one at a time (with a preview) or all at once.
 
-| Category | Preset | Description |
-|---|---|---|
-| **Essentials** | Recently Played | Tracks played in the last 30 days |
-| | Recently Added | Added to library in the last 30 days |
-| | Most Played | Top 100 most-played tracks |
-| | Never Played | Unplayed tracks, randomised |
-| | Loved Tracks | All favourited tracks |
-| | Top Rated | Rated 4 stars or higher |
-| **Discovery** | Fresh Blood | Added in last 7 days and never played |
-| | Vinyl Roulette | 50 completely random tracks |
-| | One-Hit Wonders | Played exactly once |
-| | Album Openers | Track 1 from every album |
-| **Rediscovery** | Forgotten Gems | Loved/rated but unplayed for 6+ months (nested) |
-| | Comebacks | Played 5+ times but dormant for 6 months |
-| | Buried Treasure | Added over a year ago, never played |
-| **Moods & Vibes** | Long Drives | Tracks over 6 minutes |
-| | Short & Sweet | Under 3 minutes |
-| | Deep Cuts | Album track 5+ (beyond the singles) |
-| | Slow Burners | Under 100 BPM |
-| | Bangers Only | Over 140 BPM |
-| **Quality & Format** | FLAC Attack | Lossless FLAC only |
-| | Hi-Res Audio | 24-bit or higher |
-| | Lossy Leftovers | Under 320 kbps — upgrade candidates |
-| **Decades** | 60s–2010s Classics | One preset per decade (1960–2019) |
-| **Complex / Nested** | 80s Gold | Loved or rated 4+ AND 1980s (nested) |
-| | The Collector | Played 10+ AND (loved OR rated 4+) |
-| | Guilty Pleasures | High plays but never loved or rated |
-| | Compilation Cuts | Compilation tracks you love or play often |
-| | Peak Album Experience | Loved disc-1 tracks, album order |
-| | The Graveyard | 2+ years old, barely played, unloved — do they stay? |
+There are **nearly 300 presets** across **35 categories**:
+
+<details>
+<summary><strong>Essentials</strong> (6 presets)</summary>
+
+| Preset | Description |
+|---|---|
+| Recently Played | Tracks played in the last 30 days |
+| Recently Added | Tracks added to the library in the last 30 days |
+| Most Played | Your top 100 most-played tracks of all time |
+| Never Played | Tracks you haven't listened to yet |
+| Loved Tracks | All your favourited tracks, newest first |
+| Top Rated | Tracks rated 4 stars or higher |
+
+</details>
+
+<details>
+<summary><strong>Discovery</strong> (6 presets)</summary>
+
+| Preset | Description |
+|---|---|
+| Fresh Blood | Added in the last 7 days and never played — your unheard new arrivals |
+| Vinyl Roulette | 50 completely random tracks — spin the wheel |
+| One-Hit Wonders | Tracks you've played exactly once — give them a second chance |
+| Album Openers | Track 1 from every album — first impressions only |
+| Fresh Favorites | Loved in the last 30 days — your latest sonic crushes |
+| The Slow Burn | Added over 6 months ago, played for the first time recently — late discovery |
+
+</details>
+
+<details>
+<summary><strong>Rediscovery</strong> (5 presets)</summary>
+
+| Preset | Description |
+|---|---|
+| Forgotten Gems | Loved or highly-rated tracks you haven't played in 6+ months |
+| Comebacks | Played 5+ times but not in the last 6 months — old favourites gathering dust |
+| Buried Treasure | Added over a year ago and never played — lost in the stacks |
+| Abandoned Ships | Loved once but not played in 2+ years — what happened? |
+| Late Bloomers | Added over a year ago, first plays in the last 3 months — finally getting attention |
+
+</details>
+
+<details>
+<summary><strong>Moods & Vibes</strong> (10 presets)</summary>
+
+| Preset | Description |
+|---|---|
+| Long Drives | Epic tracks over 6 minutes — settle in for the ride |
+| Short & Sweet | Quick hits under 3 minutes |
+| Deep Cuts | Tracks 5+ on the album — beyond the singles |
+| Slow Burners | Tracks under 100 BPM — chill, downtempo, mellow |
+| Bangers Only | High-energy tracks over 140 BPM |
+| Night Owls | Long, slow, deep — music for 3 AM |
+| Morning Coffee | Moderate tempo, not too long — ease into the day |
+| Study Session | Under 100 BPM and over 4 minutes — focus-friendly background music |
+| Road Trip | 4-7 minute favourites — windows down, volume up |
+| Dinner Party | Mellow tempo, mid-length, well-rated — sophisticated background music |
+
+</details>
+
+<details>
+<summary><strong>Quality & Format</strong> (11 presets)</summary>
+
+| Preset | Description |
+|---|---|
+| FLAC Attack | Lossless FLAC files only — audiophile approved |
+| Hi-Res Audio | 24-bit or higher — studio master quality |
+| Lossy Leftovers | Tracks under 320kbps — candidates for upgrade |
+| Sonic Giants | Files over 50 MB — your storage-devouring monsters |
+| The Featherweights | Files under 2 MB — tiny but mighty |
+| MP3 Nostalgia | Good old MP3 files — Napster would be proud |
+| AAC Collection | AAC/M4A files — the iTunes generation |
+| Mono Classics | Single-channel audio — pre-stereo charm |
+| Surround Sound | Multi-channel tracks — more than stereo |
+| Lo-Fi Charm | Low bitrate but high play count — proof that quality isn't everything |
+| The Audiophile | FLAC, 24-bit, and rated 4+ — golden ears only |
+
+</details>
+
+<details>
+<summary><strong>Decades</strong> (9 presets)</summary>
+
+| Preset | Description |
+|---|---|
+| 60s Classics | Everything from 1960–1969 |
+| 70s Classics | Everything from 1970–1979 |
+| 80s Classics | Everything from 1980–1989 |
+| 90s Classics | Everything from 1990–1999 |
+| 2000s Classics | Everything from 2000–2009 |
+| 2010s Classics | Everything from 2010–2019 |
+| Pre-1960 Vintage | Music from before 1960 — the golden oldies |
+| 2020s Fresh | Everything from 2020 onwards — the latest era |
+| Turn of the Century | Music from 1998-2002 — straddling the millennium |
+
+</details>
+
+<details>
+<summary><strong>Complex / Nested</strong> (14 presets)</summary>
+
+| Preset | Description |
+|---|---|
+| 80s Gold | Loved or highly-rated tracks from the 1980s (nested logic) |
+| The Collector | Played 10+ times AND (loved OR rated 4+) — your true obsessions |
+| Guilty Pleasures | High play count but never loved or rated — your secret shames |
+| Compilation Cuts | Tracks from compilation albums you've loved or played often |
+| Peak Album Experience | Loved tracks from their original disc 1, ordered by album then track |
+| The Graveyard | Tracks added over 2 years ago, played once or never, and not loved — do they deserve to stay? |
+| The Renaissance | Not played in 6+ months but recently loved or rated — rediscovered and reborn |
+| Genre Hopper | Loved tracks from compilations or multi-disc sets — eclectic by nature |
+| The Paradox | Low-rated tracks you've played a lot OR high-rated ones you've barely touched |
+| The Upgrade List | Loved tracks in lossy format — candidates for a lossless upgrade |
+| Peak Discovery | Added in the last 90 days AND (already loved OR rated 4+) — love at first listen |
+| The Deep End | Long tracks (7+ min), loved or highly rated, from deep in the album — sonic journeys |
+| The Full Circle | Track 1 from albums where you've loved it AND played 5+ times — iconic opening moments |
+| The Shelf Life | Added 1-2 years ago, played 1-3 times, not loved — the forgotten middle ground |
+
+</details>
+
+<details>
+<summary><strong>Eras</strong> (10 presets)</summary>
+
+| Preset | Description |
+|---|---|
+| British Invasion | 1963-1966 — when Britain conquered the airwaves |
+| Summer of Love | 1967 — peace, love, and psychedelia |
+| Punk '77 | 1977 — the year punk broke |
+| MTV Generation | 1981-1992 — I want my MTV |
+| Grunge Era | 1991-1994 — flannel shirts and distortion pedals |
+| Y2K Era | 1999-2003 — millennium madness and nu-metal |
+| Disco Fever | 1975-1980 — mirror balls and platform shoes |
+| New Wave | 1978-1985 — synths, sharp suits, and angular guitars |
+| Golden Age Hip-Hop | 1986-1996 — the boom-bap golden era |
+| Britpop | 1993-1997 — Blur vs Oasis and everything in between |
+
+</details>
+
+<details>
+<summary><strong>Duration</strong> (6 presets)</summary>
+
+| Preset | Description |
+|---|---|
+| Epic Odysseys | Mammoth tracks over 10 minutes — bring snacks |
+| Marathon Tracks | Ultra-long tracks over 15 minutes — the ultimate endurance test |
+| The Sweet Spot | Goldilocks tracks — between 3 and 5 minutes |
+| Micro Tracks | Blink-and-you'll-miss-it — under 60 seconds |
+| The Four-Twenty | Tracks roughly 4 minutes 20 seconds long — nice |
+| Commute Friendly | 3-7 minute tracks — perfect for the daily commute |
+
+</details>
+
+<details>
+<summary><strong>Tempo & Energy</strong> (6 presets)</summary>
+
+| Preset | Description |
+|---|---|
+| Comatose | Sub-70 BPM — practically horizontal music |
+| The Heartbeat Zone | 60-80 BPM — synced to your resting heart rate |
+| Walking Pace | 90-110 BPM — perfect for a stroll |
+| Jogging Mix | 120-140 BPM — keep that pace steady |
+| Sprint Mode | 160+ BPM — all-out sonic assault |
+| Workout Fuel | 120-160 BPM, 3-5 minutes — gym-ready bangers |
+
+</details>
+
+<details>
+<summary><strong>Stats & Data</strong> (11 presets)</summary>
+
+| Preset | Description |
+|---|---|
+| Heavy Rotation | Played 20+ times — your most-spun records |
+| The Obsessions | Played 50+ times — you might have a problem |
+| The Centurion Club | Played 100+ times — welcome to the triple-digit club |
+| The Untouchables | Perfect 5-star rated tracks — flawless victories |
+| The Indifferent | Rated exactly 3 stars — aggressively mediocre or secretly brilliant? |
+| Underrated Gems | Rated 4+ stars but played fewer than 5 times — criminally underplayed |
+| Rising Stars | Added in the last 90 days and already played 3+ times — instant favourites |
+| Falling Stars | Loved tracks you haven't played in over a year — falling out of favour |
+| The Loyalists | Played recently AND loved — your ride-or-die tracks |
+| Statistical Anomalies | Played 10+ times but rated 1 or 2 — why do you keep listening? |
+| The One Percent | Loved AND 5-star AND played 20+ times — the absolute elite |
+
+</details>
+
+<details>
+<summary><strong>Track Position</strong> (8 presets)</summary>
+
+| Preset | Description |
+|---|---|
+| The B-Team | Track 2 — the eternal runner-up, always the bridesmaid |
+| The Middle Child | Tracks 4-7 — the overlooked middle of the album |
+| The Lucky Seven | Track 7 from every album — lucky number listening |
+| Double Digits | Track 10 and beyond — deep album territory |
+| Track 13 | The unlucky thirteenth track — cursed bangers only |
+| Disc Two Deep Cuts | Everything from disc 2 onwards — the stuff casual fans never reach |
+| Hidden Tracks | Extremely high track numbers and long duration — the secret Easter eggs |
+| Singles Material | Tracks 1-3, under 4 minutes — the obvious single choices |
+
+</details>
+
+<details>
+<summary><strong>Seasonal</strong> (3 presets)</summary>
+
+| Preset | Description |
+|---|---|
+| Summer Anthems | Upbeat, high-energy, well-loved — soundtrack to endless summers |
+| Winter Warmers | Slow, long, and cozy — music for blankets and hot chocolate |
+| Rainy Day | Melancholic tempo, mid-length — perfect for watching the rain |
+
+</details>
+
+<details>
+<summary><strong>Library Housekeeping</strong> (5 presets)</summary>
+
+| Preset | Description |
+|---|---|
+| Missing Artwork | Tracks without cover art — naked albums |
+| Recently Modified | Files modified in the last 30 days — recently re-tagged or updated |
+| Explicit Only | Tracks marked as explicit — parental advisory |
+| The Void | Not rated, not loved, never played — do these tracks even exist? |
+| Digital Archaeology | Files not modified in over 5 years — digital fossils |
+
+</details>
+
+<details>
+<summary><strong>Albums & Collections</strong> (2 presets)</summary>
+
+| Preset | Description |
+|---|---|
+| Pure Albums Only | No compilations — original album tracks only |
+| Compilation Discovery | Unplayed compilation tracks — hidden in the various artists pile |
+
+</details>
+
+<details>
+<summary><strong>Weird & Wonderful</strong> (13 presets)</summary>
+
+| Preset | Description |
+|---|---|
+| Earworms | Short tracks with high play counts — catchy hooks that won't leave your head |
+| Party Starters | Fast, short, and frequently played — instant party igniters |
+| Perfectionist's Pick | Lossless, loved, and rated 5 — the pinnacle of your collection |
+| The Completionist | Loved, rated 5, played 10+ times, with cover art — peak curation |
+| The Time Capsule | Original release date before 1970 — prehistoric recordings in your library |
+| New Classics | Released 2020+ and already rated 4+ — instant modern classics |
+| Vintage Lossless | Pre-1970 music in FLAC — old soul, pristine quality |
+| The Growers | Played 10+ times but still not loved — they grew on you quietly |
+| The Soundtrack | Your loved tracks, album-ordered — the movie of your life |
+| The Anti-Shuffle | Your best tracks in strict chronological order — no randomness allowed |
+| Zero to Hero | Never played but recently added — fresh arrivals awaiting their debut |
+| The Shapeshifters | Tracks from multi-disc albums — sprawling artistic statements |
+| Format Roulette | Non-FLAC, non-MP3 files — the weird and wonderful formats |
+
+</details>
+
+<details>
+<summary><strong>Genre</strong> (22 presets)</summary>
+
+| Preset | Description |
+|---|---|
+| Rock Essentials | All your rock tracks — the backbone of any collection |
+| Pop Hits | Pure pop — catchy, polished, irresistible |
+| Hip-Hop & Rap | Beats, bars, and bass — every hip-hop track in your library |
+| Electronic & EDM | Synths, beats, and drops — the electronic spectrum |
+| Jazz Collection | Smooth, free, bebop, fusion — all that jazz |
+| Blues Sessions | 12 bars of feeling — every shade of blue |
+| Metal Mayhem | Heavy, heavier, heaviest — all metal subgenres welcome |
+| Classical Corner | Centuries of composed genius — from baroque to modern classical |
+| Country Roads | Twang, steel guitars, and storytelling — country & western |
+| R&B & Soul | Rhythm, blues, and soul — smooth grooves |
+| Folk & Acoustic | Stripped back, honest, raw — campfire music |
+| Punk Rock | Three chords and the truth — fast, loud, attitude |
+| Reggae & Dub | Island rhythms and bass-heavy echoes |
+| Funk Machine | Get up offa that thing — pure funk |
+| Disco Nights | Mirror balls and four-on-the-floor — disco never died |
+| Indie & Alternative | Left of the dial — indie and alt everything |
+| Ambient & Downtempo | Sonic wallpaper — ambient textures and slow atmospheres |
+| Latin Flavours | Salsa, bossa nova, reggaeton, and more — ritmo latino |
+| Soundtrack & Score | Film scores, game soundtracks, and musical theatre |
+| World Music | Global sounds — music from every corner of the planet |
+| Experimental & Avant-Garde | The outer limits — music that defies categorisation |
+| Gospel & Spiritual | Hallelujah — uplifting gospel and spiritual music |
+
+</details>
+
+<details>
+<summary><strong>Genre Fusions</strong> (10 presets)</summary>
+
+| Preset | Description |
+|---|---|
+| Loved Rock | Rock tracks you've loved — your personal rock hall of fame |
+| Jazz in FLAC | Jazz the way it should be heard — lossless and warm |
+| Top Rated Electronic | Your best electronic tracks — rated 4 or higher |
+| Metal Marathons | Metal tracks over 7 minutes — epic prog and doom journeys |
+| Mellow Classics | Classical tracks under 100 BPM — serene and peaceful |
+| Unplayed Genres | Never-played tracks from jazz, classical, or folk — explore your blind spots |
+| Hip-Hop Classics | Pre-2000 hip-hop — golden age bars and beats |
+| Pop Perfection | Pop tracks rated 5 stars — verified bangers only |
+| Punk Under 2 Minutes | The punkest tracks — blisteringly short, maximum energy |
+| Epic Soundtracks | Soundtrack tracks over 5 mins — cinematic epics |
+
+</details>
+
+<details>
+<summary><strong>Mood</strong> (16 presets)</summary>
+
+| Preset | Description |
+|---|---|
+| Happy Vibes | Tracks tagged with a happy mood — guaranteed smiles |
+| Sad Songs | Permission to feel — melancholy, sad, somber tracks |
+| Energetic | High-energy mood tags — for when you need a boost |
+| Relaxing | Chill, calm, peaceful — music to decompress to |
+| Aggressive | Raw, angry, intense — music with teeth |
+| Romantic | Love songs and tender feelings — set the mood |
+| Dark & Brooding | Gothic, moody, ominous — for your darker moments |
+| Dreamy | Ethereal, floating, otherworldly — music from another dimension |
+| Nostalgic | Wistful, bittersweet, sentimental — music that takes you back |
+| Epic & Cinematic | Grand, triumphant, sweeping — your life needs a soundtrack |
+| Groovy | Funky, groovy, rhythmic — get your head nodding |
+| Rebellious | Defiant, rebellious, anarchic — music that fights back |
+| Spooky | Creepy, haunting, sinister — perfect for Halloween or 3AM listening |
+| Uplifting | Inspirational, hopeful, uplifting — music to lift your spirits |
+| Sexy | Sultry, seductive, steamy — after-dark listening |
+| Playful | Quirky, whimsical, fun — music that doesn't take itself seriously |
+
+</details>
+
+<details>
+<summary><strong>Mood Fusions</strong> (5 presets)</summary>
+
+| Preset | Description |
+|---|---|
+| Happy & Loved | Tracks tagged happy that you've also loved — double the joy |
+| Sad & Highly Rated | Beautiful sadness — melancholy tracks you rated 4 or higher |
+| Dark & Heavy | Dark mood + metal genre — the heaviest, darkest corner of your library |
+| Chill Electronic | Relaxing mood meets electronic genre — ambient beats and warm synths |
+| Moody Discoveries | Tracks with a mood tag but never played — what vibe are you missing? |
+
+</details>
+
+<details>
+<summary><strong>ReplayGain & Loudness</strong> (13 presets)</summary>
+
+| Preset | Description |
+|---|---|
+| The Loudness War | Tracks with very low ReplayGain — mastered LOUD, brickwalled, no mercy |
+| Whisper Quiet | Tracks with high ReplayGain — delicately mastered, natural dynamics |
+| Dynamic Range Kings | Low peak values with moderate gain — well-mastered with real dynamics |
+| Clipping Danger | Tracks with peak at or near 1.0 — pushing the hard limits of digital audio |
+| Hot Albums | Albums mastered loud — low album ReplayGain means a hot master |
+| Gentle Albums | Albums with high positive gain — mastered with restraint and space |
+| The Loud & Loved | Brickwalled masters you love anyway — loudness war survivors |
+| Audiophile Masters | FLAC + low peak + moderate gain + high rating — mastering perfection |
+| R128 Normalized | Tracks with R128 loudness normalization tags — broadcast-standard levels |
+| Loudness Outliers | Tracks with extreme gain values (> +10 or < -15) — the volume oddballs |
+| Headroom Heroes | Tracks with peak well below 1.0 — plenty of headroom, no distortion |
+| Volume Crankers | Very quiet tracks needing +8 dB or more gain — turn it up! |
+| Album vs Track Mismatch | Tracks where album gain is much different from track gain — the loud/quiet song on the album |
+
+</details>
+
+<details>
+<summary><strong>Musical Keys</strong> (11 presets)</summary>
+
+| Preset | Description |
+|---|---|
+| Key of C Major | The people's key — bright, simple, triumphant |
+| Key of A Minor | The relative minor of C — moody and introspective |
+| Key of D Major | The key of glory — Beethoven's favourite for joy |
+| Key of E Minor | The guitar key — rock and metal's natural home |
+| Key of G Major | Pastoral and warm — folk and country's sweet spot |
+| Key of B-flat Major | The key of jazz and brass — warm and sophisticated |
+| Minor Keys Only | Every track in a minor key — melancholy, tension, and drama |
+| Major Keys Only | Every track in a major key — bright, happy, resolved |
+| Sharp Keys | Keys with sharps — bright and cutting |
+| Flat Keys | Keys with flats — dark, warm, and mellow |
+| DJ Mix Ready | Tracks with both key and BPM data — ready for harmonic mixing |
+
+</details>
+
+<details>
+<summary><strong>Language & International</strong> (10 presets)</summary>
+
+| Preset | Description |
+|---|---|
+| English Language | Tracks tagged as English — lingua franca of pop |
+| French Chansons | Music in French — la vie en rose |
+| German Musik | Tracks in German — Kraftwerk to classical lieder |
+| Spanish Musica | Music in Spanish — from flamenco to reggaeton |
+| Italian Melodia | Tracks in Italian — opera, pop, and canzone |
+| Japanese Ongaku | Music in Japanese — J-pop, J-rock, enka, and more |
+| Korean Eumak | Tracks in Korean — K-pop and beyond |
+| Portuguese Musica | Music in Portuguese — bossa nova, fado, MPB, and sertanejo |
+| Non-English Favourites | Loved tracks not in English — your polyglot picks |
+| Multilingual Library | All tracks with a language tag — discover what languages live in your library |
+
+</details>
+
+<details>
+<summary><strong>Lyrics</strong> (9 presets)</summary>
+
+| Preset | Description |
+|---|---|
+| Has Lyrics | Tracks with embedded lyrics — singalong ready |
+| Lyrics Karaoke Night | Loved tracks with lyrics — your personal karaoke setlist |
+| Lyrical Love Songs | Tracks with 'love' in the lyrics — the universal theme |
+| Lyrical Night Tracks | Songs mentioning 'night' in the lyrics — after-dark anthems |
+| Lyrical Rain Songs | Songs with 'rain' in the lyrics — tear-stained and atmospheric |
+| Lyrical Fire | Songs mentioning 'fire' in the lyrics — burning intensity |
+| Lyrical Dream | Songs with 'dream' in the lyrics — subconscious songwriting |
+| Lyrical Heart Songs | Songs mentioning 'heart' in the lyrics — pure emotion |
+| Missing Lyrics | Loved tracks without embedded lyrics — candidates for lyric tagging |
+
+</details>
+
+<details>
+<summary><strong>Classical & Composed</strong> (7 presets)</summary>
+
+| Preset | Description |
+|---|---|
+| Composed Works | Tracks with a composer tag — composed, not just performed |
+| Multi-Movement Works | Tracks with movement data — symphonies, sonatas, suites |
+| Grand Works | Works with 4+ movements — the big symphonies and concertos |
+| Conducted Performances | Tracks with a named conductor — orchestral and choral works |
+| Arranged Pieces | Tracks with an arranger — reinterpreted and rearranged |
+| Long Classical | Classical tracks over 10 minutes — symphonic movements and extended pieces |
+| Favourite Composers | Composed tracks you've loved — your personal classical canon |
+
+</details>
+
+<details>
+<summary><strong>Production & Credits</strong> (6 presets)</summary>
+
+| Preset | Description |
+|---|---|
+| Producer Spotlight | Tracks with a named producer — the invisible architects of sound |
+| Remixed | Tracks with a remixer credit — twisted, flipped, and reinvented |
+| Engineered Sound | Tracks with an engineer credit — the unsung heroes of recording |
+| DJ Mixed | Tracks with a DJ mixer credit — club-tested and approved |
+| Performed By | Tracks with a performer credit — featured performances and guests |
+| Loved Remixes | Remixed tracks you've loved — proof that the remix can beat the original |
+
+</details>
+
+<details>
+<summary><strong>Labels & Releases</strong> (11 presets)</summary>
+
+| Preset | Description |
+|---|---|
+| Label Browser | Tracks with a record label tag — browse your library by label |
+| Official Releases | Tracks marked as official release status — the real deal |
+| Bootleg Corner | Bootleg release status — raw, unofficial, underground |
+| Promotional | Promotional releases — advance copies and promos |
+| Singles Only | Release type: single — the A-sides and lead tracks |
+| EPs Only | Release type: EP — more than a single, less than an album |
+| Live Albums | Release type: live — captured in the moment |
+| Made in USA | Released in the United States |
+| Made in UK | Released in the United Kingdom — birthplace of countless genres |
+| Made in Japan | Released in Japan — the home of bonus tracks |
+| Made in Germany | Released in Germany — precision engineering and electronic pioneers |
+
+</details>
+
+<details>
+<summary><strong>Album Structure</strong> (5 presets)</summary>
+
+| Preset | Description |
+|---|---|
+| Short EPs | Albums with 6 or fewer tracks — EPs and mini-albums |
+| Standard Albums | Albums with 8-14 tracks — the classic LP format |
+| Mammoth Albums | Albums with 20+ tracks — sprawling epics and deluxe editions |
+| Box Sets | Releases with 3+ discs — comprehensive collections and box sets |
+| Double Albums | 2-disc releases — double albums and expanded editions |
+
+</details>
+
+<details>
+<summary><strong>Dates & History</strong> (7 presets)</summary>
+
+| Preset | Description |
+|---|---|
+| Reissued Classics | Tracks where original date is before 1990 — vintage recordings, modern releases |
+| Recorded Before Released | Tracks with recording date data — vault recordings and studio session dates |
+| Brand New Releases | Release date in the last 90 days — freshly pressed |
+| Loved This Week | Tracks loved in the last 7 days — this week's sonic crushes |
+| Loved This Month | Tracks loved in the last 30 days — this month's highlights |
+| Yesterday's Jams | Played in the last 24 hours — what you were vibing to yesterday |
+| This Year's Harvest | Added to library this year — your annual haul |
+
+</details>
+
+<details>
+<summary><strong>Comments & Tags</strong> (5 presets)</summary>
+
+| Preset | Description |
+|---|---|
+| Has Comments | Tracks with something in the comment tag — little notes from the tagger |
+| Subtitled Tracks | Tracks with a subtitle — alternate versions, duets, and variations |
+| Grouped Tracks | Tracks with a grouping tag — custom categories beyond genre |
+| Album With Commentary | Albums with a comment in the album tag — liner notes in digital form |
+| Disc Subtitled | Tracks with disc subtitles — named discs in multi-disc releases |
+
+</details>
+
+<details>
+<summary><strong>Metadata Completeness</strong> (9 presets)</summary>
+
+| Preset | Description |
+|---|---|
+| Perfectly Tagged | Tracks with MusicBrainz ID, cover art, genre, and year — textbook metadata |
+| MusicBrainz Tagged | Tracks with a MusicBrainz recording ID — database-verified metadata |
+| No MusicBrainz ID | Tracks missing a MusicBrainz ID — candidates for Picard tagging |
+| Missing Genre | Tracks with no genre tag — the uncategorised wilderness |
+| Missing Year | Tracks with year set to 0 or missing — when were these released? |
+| Has ISRC | Tracks with an ISRC code — internationally standardised recordings |
+| Has Barcode | Releases with a barcode — commercially released and catalogued |
+| Catalog Numbered | Releases with a catalog number — label-indexed and official |
+| Well-Tagged Loved | Loved tracks with genre, year, cover art, and MB ID — your curated jewels |
+
+</details>
+
+<details>
+<summary><strong>Media & Encoding</strong> (6 presets)</summary>
+
+| Preset | Description |
+|---|---|
+| CD Rips | Media type: CD — ripped from compact disc |
+| Vinyl Rips | Media type: Vinyl — digitised from the grooves |
+| Digital Media | Media type: Digital Media — born digital, no physical source |
+| Cassette Captures | Media type: Cassette — tape hiss and warm analogue charm |
+| Encoded By You | Tracks with an encoded-by tag — personally ripped or converted |
+| Encoder Settings Log | Tracks with encoder settings recorded — the forensic audit trail |
+
+</details>
+
+<details>
+<summary><strong>Copyright & Licensing</strong> (3 presets)</summary>
+
+| Preset | Description |
+|---|---|
+| Copyrighted Works | Tracks with copyright info — properly attributed |
+| Licensed Music | Tracks with a license tag — Creative Commons, royalty-free, and more |
+| Has Website | Tracks linking to an artist or album website — direct to the source |
+
+</details>
+
+<details>
+<summary><strong>Title Patterns</strong> (15 presets)</summary>
+
+| Preset | Description |
+|---|---|
+| Instrumental Tracks | Titles containing 'instrumental' — no vocals, pure music |
+| Acoustic Versions | Titles containing 'acoustic' — stripped-back reworkings |
+| Live Recordings | Titles containing 'live' — captured in the moment |
+| Demo Recordings | Titles containing 'demo' — rough diamonds from the studio |
+| Remix Versions | Titles or subtitles containing 'remix' — reworked for the floor |
+| Remastered Editions | Tracks marked as remastered — polished for a new generation |
+| Bonus Tracks | Tracks with 'bonus' in the title — the hidden extras |
+| Extended Mixes | Titles containing 'extended' — longer versions for deeper listening |
+| Deluxe Editions | Album versions marked as deluxe — expanded with extras |
+| Covers & Tributes | Titles containing 'cover' or 'tribute' — homage tracks |
+| Featuring Collaborations | Titles with 'feat.' or 'ft.' — collaborative moments |
+| Numbered Sequels | Titles containing 'Part' or 'Pt.' — serialised storytelling |
+| Interlude & Skit | Titles containing 'interlude', 'skit', or 'intro' — the spaces between |
+| Self-Titled Tracks | Tracks where title starts with the same text as the album — the namesake |
+| Parenthetical Versions | Titles containing parentheses — alternate versions, editions, and notes |
+
+</details>
+
+<details>
+<summary><strong>Filepath & Organisation</strong> (3 presets)</summary>
+
+| Preset | Description |
+|---|---|
+| The A-List | Artists starting with 'A' — top of the alphabet, top of the pile |
+| The Number Ones | Tracks with numbers in the title — countable music |
+| The 'The' Bands | Artists starting with 'The' — the most common word in band names |
+
+</details>
 
 ---
 

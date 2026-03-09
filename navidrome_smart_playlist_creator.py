@@ -2436,6 +2436,889 @@ class SmartPlaylistCreator:
             ],
             "sort": "random", "limit": 100,
         }),
+
+        # ── Musical Keys ─────────────────────────────────────────────
+        ("Key of C Major", "key-of-c-major", "Musical Keys", {
+            "name": "Key of C Major",
+            "comment": "The people's key — bright, simple, triumphant",
+            "any": [
+                {"is": {"key": "Cmaj"}},
+                {"is": {"key": "C"}},
+                {"is": {"key": "C major"}},
+            ],
+            "sort": "random", "limit": 100,
+        }),
+        ("Key of A Minor", "key-of-a-minor", "Musical Keys", {
+            "name": "Key of A Minor",
+            "comment": "The relative minor of C — moody and introspective",
+            "any": [
+                {"is": {"key": "Amin"}},
+                {"is": {"key": "Am"}},
+                {"is": {"key": "A minor"}},
+            ],
+            "sort": "random", "limit": 100,
+        }),
+        ("Key of D Major", "key-of-d-major", "Musical Keys", {
+            "name": "Key of D Major",
+            "comment": "The key of glory — Beethoven's favourite for joy",
+            "any": [
+                {"is": {"key": "Dmaj"}},
+                {"is": {"key": "D"}},
+                {"is": {"key": "D major"}},
+            ],
+            "sort": "random", "limit": 100,
+        }),
+        ("Key of E Minor", "key-of-e-minor", "Musical Keys", {
+            "name": "Key of E Minor",
+            "comment": "The guitar key — rock and metal's natural home",
+            "any": [
+                {"is": {"key": "Emin"}},
+                {"is": {"key": "Em"}},
+                {"is": {"key": "E minor"}},
+            ],
+            "sort": "random", "limit": 100,
+        }),
+        ("Key of G Major", "key-of-g-major", "Musical Keys", {
+            "name": "Key of G Major",
+            "comment": "Pastoral and warm — folk and country's sweet spot",
+            "any": [
+                {"is": {"key": "Gmaj"}},
+                {"is": {"key": "G"}},
+                {"is": {"key": "G major"}},
+            ],
+            "sort": "random", "limit": 100,
+        }),
+        ("Key of B-flat Major", "key-of-bb-major", "Musical Keys", {
+            "name": "Key of B-flat Major",
+            "comment": "The key of jazz and brass — warm and sophisticated",
+            "any": [
+                {"is": {"key": "Bbmaj"}},
+                {"is": {"key": "Bb"}},
+                {"is": {"key": "Bb major"}},
+                {"is": {"key": "B-flat major"}},
+            ],
+            "sort": "random", "limit": 100,
+        }),
+        ("Minor Keys Only", "minor-keys-only", "Musical Keys", {
+            "name": "Minor Keys Only",
+            "comment": "Every track in a minor key — melancholy, tension, and drama",
+            "any": [
+                {"contains": {"key": "min"}},
+                {"contains": {"key": "minor"}},
+                {"endsWith": {"key": "m"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Major Keys Only", "major-keys-only", "Musical Keys", {
+            "name": "Major Keys Only",
+            "comment": "Every track in a major key — bright, happy, resolved",
+            "any": [
+                {"contains": {"key": "maj"}},
+                {"contains": {"key": "major"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Sharp Keys", "sharp-keys", "Musical Keys", {
+            "name": "Sharp Keys",
+            "comment": "Keys with sharps — bright and cutting",
+            "any": [
+                {"contains": {"key": "F#"}},
+                {"contains": {"key": "C#"}},
+                {"contains": {"key": "G#"}},
+                {"contains": {"key": "D#"}},
+                {"contains": {"key": "A#"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Flat Keys", "flat-keys", "Musical Keys", {
+            "name": "Flat Keys",
+            "comment": "Keys with flats — dark, warm, and mellow",
+            "any": [
+                {"contains": {"key": "Bb"}},
+                {"contains": {"key": "Eb"}},
+                {"contains": {"key": "Ab"}},
+                {"contains": {"key": "Db"}},
+                {"contains": {"key": "Gb"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("DJ Mix Ready", "dj-mix-ready", "Musical Keys", {
+            "name": "DJ Mix Ready",
+            "comment": "Tracks with both key and BPM data — ready for harmonic mixing",
+            "all": [
+                {"notContains": {"key": ""}},
+                {"gt": {"bpm": 0}},
+            ],
+            "sort": "+key,+bpm",
+        }),
+
+        # ── Language & International ─────────────────────────────────
+        ("English Language", "english-language", "Language & International", {
+            "name": "English Language",
+            "comment": "Tracks tagged as English — lingua franca of pop",
+            "any": [
+                {"is": {"language": "eng"}},
+                {"is": {"language": "en"}},
+                {"is": {"language": "English"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("French Chansons", "french-chansons", "Language & International", {
+            "name": "French Chansons",
+            "comment": "Music in French — la vie en rose",
+            "any": [
+                {"is": {"language": "fra"}},
+                {"is": {"language": "fre"}},
+                {"is": {"language": "fr"}},
+                {"is": {"language": "French"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("German Musik", "german-musik", "Language & International", {
+            "name": "German Musik",
+            "comment": "Tracks in German — Kraftwerk to classical lieder",
+            "any": [
+                {"is": {"language": "deu"}},
+                {"is": {"language": "ger"}},
+                {"is": {"language": "de"}},
+                {"is": {"language": "German"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Spanish Musica", "spanish-musica", "Language & International", {
+            "name": "Spanish Musica",
+            "comment": "Music in Spanish — from flamenco to reggaeton",
+            "any": [
+                {"is": {"language": "spa"}},
+                {"is": {"language": "es"}},
+                {"is": {"language": "Spanish"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Italian Melodia", "italian-melodia", "Language & International", {
+            "name": "Italian Melodia",
+            "comment": "Tracks in Italian — opera, pop, and canzone",
+            "any": [
+                {"is": {"language": "ita"}},
+                {"is": {"language": "it"}},
+                {"is": {"language": "Italian"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Japanese Ongaku", "japanese-ongaku", "Language & International", {
+            "name": "Japanese Ongaku",
+            "comment": "Music in Japanese — J-pop, J-rock, enka, and more",
+            "any": [
+                {"is": {"language": "jpn"}},
+                {"is": {"language": "ja"}},
+                {"is": {"language": "Japanese"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Korean Eumak", "korean-eumak", "Language & International", {
+            "name": "Korean Eumak",
+            "comment": "Tracks in Korean — K-pop and beyond",
+            "any": [
+                {"is": {"language": "kor"}},
+                {"is": {"language": "ko"}},
+                {"is": {"language": "Korean"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Portuguese Musica", "portuguese-musica", "Language & International", {
+            "name": "Portuguese Musica",
+            "comment": "Music in Portuguese — bossa nova, fado, MPB, and sertanejo",
+            "any": [
+                {"is": {"language": "por"}},
+                {"is": {"language": "pt"}},
+                {"is": {"language": "Portuguese"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Non-English Favourites", "non-english-favourites", "Language & International", {
+            "name": "Non-English Favourites",
+            "comment": "Loved tracks not in English — your polyglot picks",
+            "all": [
+                {"isNot": {"language": "eng"}},
+                {"isNot": {"language": "en"}},
+                {"isNot": {"language": "English"}},
+                {"notContains": {"language": ""}},
+                {"is": {"loved": True}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Multilingual Library", "multilingual-library", "Language & International", {
+            "name": "Multilingual Library",
+            "comment": "All tracks with a language tag — discover what languages live in your library",
+            "all": [{"notContains": {"language": ""}}],
+            "sort": "+language,+artist,+album,+track",
+        }),
+
+        # ── Lyrics ───────────────────────────────────────────────────
+        ("Has Lyrics", "has-lyrics", "Lyrics", {
+            "name": "Has Lyrics",
+            "comment": "Tracks with embedded lyrics — singalong ready",
+            "all": [{"notContains": {"lyrics": ""}}],
+            "sort": "random", "limit": 200,
+        }),
+        ("Lyrics Karaoke Night", "lyrics-karaoke-night", "Lyrics", {
+            "name": "Lyrics Karaoke Night",
+            "comment": "Loved tracks with lyrics — your personal karaoke setlist",
+            "all": [
+                {"notContains": {"lyrics": ""}},
+                {"is": {"loved": True}},
+            ],
+            "sort": "random", "limit": 100,
+        }),
+        ("Lyrical Love Songs", "lyrical-love-songs", "Lyrics", {
+            "name": "Lyrical Love Songs",
+            "comment": "Tracks with 'love' in the lyrics — the universal theme",
+            "all": [{"contains": {"lyrics": "love"}}],
+            "sort": "random", "limit": 200,
+        }),
+        ("Lyrical Night Tracks", "lyrical-night-tracks", "Lyrics", {
+            "name": "Lyrical Night Tracks",
+            "comment": "Songs mentioning 'night' in the lyrics — after-dark anthems",
+            "all": [{"contains": {"lyrics": "night"}}],
+            "sort": "random", "limit": 200,
+        }),
+        ("Lyrical Rain Songs", "lyrical-rain-songs", "Lyrics", {
+            "name": "Lyrical Rain Songs",
+            "comment": "Songs with 'rain' in the lyrics — tear-stained and atmospheric",
+            "all": [{"contains": {"lyrics": "rain"}}],
+            "sort": "random", "limit": 200,
+        }),
+        ("Lyrical Fire", "lyrical-fire", "Lyrics", {
+            "name": "Lyrical Fire",
+            "comment": "Songs mentioning 'fire' in the lyrics — burning intensity",
+            "all": [{"contains": {"lyrics": "fire"}}],
+            "sort": "random", "limit": 200,
+        }),
+        ("Lyrical Dream", "lyrical-dream", "Lyrics", {
+            "name": "Lyrical Dream",
+            "comment": "Songs with 'dream' in the lyrics — subconscious songwriting",
+            "all": [{"contains": {"lyrics": "dream"}}],
+            "sort": "random", "limit": 200,
+        }),
+        ("Lyrical Heart Songs", "lyrical-heart-songs", "Lyrics", {
+            "name": "Lyrical Heart Songs",
+            "comment": "Songs mentioning 'heart' in the lyrics — pure emotion",
+            "all": [{"contains": {"lyrics": "heart"}}],
+            "sort": "random", "limit": 200,
+        }),
+        ("Missing Lyrics", "missing-lyrics", "Lyrics", {
+            "name": "Missing Lyrics",
+            "comment": "Loved tracks without embedded lyrics — candidates for lyric tagging",
+            "all": [
+                {"is": {"loved": True}},
+                {"contains": {"lyrics": ""}},
+            ],
+            "sort": "+artist,+album,+track",
+        }),
+
+        # ── Classical & Composed ─────────────────────────────────────
+        ("Composed Works", "composed-works", "Classical & Composed", {
+            "name": "Composed Works",
+            "comment": "Tracks with a composer tag — composed, not just performed",
+            "all": [{"notContains": {"composer": ""}}],
+            "sort": "+composer,+album,+track",
+        }),
+        ("Multi-Movement Works", "multi-movement-works", "Classical & Composed", {
+            "name": "Multi-Movement Works",
+            "comment": "Tracks with movement data — symphonies, sonatas, suites",
+            "all": [{"notContains": {"movementname": ""}}],
+            "sort": "+work,+movement",
+        }),
+        ("Grand Works", "grand-works", "Classical & Composed", {
+            "name": "Grand Works",
+            "comment": "Works with 4+ movements — the big symphonies and concertos",
+            "all": [{"gt": {"movementtotal": 3}}],
+            "sort": "+work,+movement",
+        }),
+        ("Conducted Performances", "conducted-performances", "Classical & Composed", {
+            "name": "Conducted Performances",
+            "comment": "Tracks with a named conductor — orchestral and choral works",
+            "all": [{"notContains": {"conductor": ""}}],
+            "sort": "+conductor,+album,+track",
+        }),
+        ("Arranged Pieces", "arranged-pieces", "Classical & Composed", {
+            "name": "Arranged Pieces",
+            "comment": "Tracks with an arranger — reinterpreted and rearranged",
+            "all": [{"notContains": {"arranger": ""}}],
+            "sort": "+arranger,+album,+track",
+        }),
+        ("Long Classical", "long-classical", "Classical & Composed", {
+            "name": "Long Classical",
+            "comment": "Classical tracks over 10 minutes — symphonic movements and extended pieces",
+            "all": [
+                {"contains": {"genre": "classical"}},
+                {"gt": {"duration": 600}},
+            ],
+            "sort": "duration", "order": "desc", "limit": 100,
+        }),
+        ("Favourite Composers", "favourite-composers", "Classical & Composed", {
+            "name": "Favourite Composers",
+            "comment": "Composed tracks you've loved — your personal classical canon",
+            "all": [
+                {"notContains": {"composer": ""}},
+                {"is": {"loved": True}},
+            ],
+            "sort": "+composer,+album,+track",
+        }),
+
+        # ── Production & Credits ─────────────────────────────────────
+        ("Producer Spotlight", "producer-spotlight", "Production & Credits", {
+            "name": "Producer Spotlight",
+            "comment": "Tracks with a named producer — the invisible architects of sound",
+            "all": [{"notContains": {"producer": ""}}],
+            "sort": "+producer,+album,+track",
+        }),
+        ("Remixed", "remixed", "Production & Credits", {
+            "name": "Remixed",
+            "comment": "Tracks with a remixer credit — twisted, flipped, and reinvented",
+            "all": [{"notContains": {"remixer": ""}}],
+            "sort": "random", "limit": 200,
+        }),
+        ("Engineered Sound", "engineered-sound", "Production & Credits", {
+            "name": "Engineered Sound",
+            "comment": "Tracks with an engineer credit — the unsung heroes of recording",
+            "all": [{"notContains": {"engineer": ""}}],
+            "sort": "random", "limit": 200,
+        }),
+        ("DJ Mixed", "dj-mixed", "Production & Credits", {
+            "name": "DJ Mixed",
+            "comment": "Tracks with a DJ mixer credit — club-tested and approved",
+            "all": [{"notContains": {"djmixer": ""}}],
+            "sort": "random", "limit": 200,
+        }),
+        ("Performed By", "performed-by", "Production & Credits", {
+            "name": "Performed By",
+            "comment": "Tracks with a performer credit — featured performances and guests",
+            "all": [{"notContains": {"performer": ""}}],
+            "sort": "random", "limit": 200,
+        }),
+        ("Loved Remixes", "loved-remixes", "Production & Credits", {
+            "name": "Loved Remixes",
+            "comment": "Remixed tracks you've loved — proof that the remix can beat the original",
+            "all": [
+                {"notContains": {"remixer": ""}},
+                {"is": {"loved": True}},
+            ],
+            "sort": "random", "limit": 100,
+        }),
+
+        # ── Labels & Releases ────────────────────────────────────────
+        ("Label Browser", "label-browser", "Labels & Releases", {
+            "name": "Label Browser",
+            "comment": "Tracks with a record label tag — browse your library by label",
+            "all": [{"notContains": {"recordlabel": ""}}],
+            "sort": "+recordlabel,+album,+track",
+        }),
+        ("Official Releases", "official-releases", "Labels & Releases", {
+            "name": "Official Releases",
+            "comment": "Tracks marked as official release status — the real deal",
+            "all": [{"is": {"releasestatus": "official"}}],
+            "sort": "random", "limit": 200,
+        }),
+        ("Bootleg Corner", "bootleg-corner", "Labels & Releases", {
+            "name": "Bootleg Corner",
+            "comment": "Bootleg release status — raw, unofficial, underground",
+            "all": [{"is": {"releasestatus": "bootleg"}}],
+            "sort": "random", "limit": 200,
+        }),
+        ("Promotional", "promotional", "Labels & Releases", {
+            "name": "Promotional",
+            "comment": "Promotional releases — advance copies and promos",
+            "all": [{"is": {"releasestatus": "promotional"}}],
+            "sort": "random", "limit": 200,
+        }),
+        ("Singles Only", "singles-only", "Labels & Releases", {
+            "name": "Singles Only",
+            "comment": "Release type: single — the A-sides and lead tracks",
+            "all": [{"is": {"releasetype": "single"}}],
+            "sort": "random", "limit": 200,
+        }),
+        ("EPs Only", "eps-only", "Labels & Releases", {
+            "name": "EPs Only",
+            "comment": "Release type: EP — more than a single, less than an album",
+            "all": [{"is": {"releasetype": "ep"}}],
+            "sort": "random", "limit": 200,
+        }),
+        ("Live Albums", "live-albums", "Labels & Releases", {
+            "name": "Live Albums",
+            "comment": "Release type: live — captured in the moment",
+            "any": [
+                {"is": {"releasetype": "live"}},
+                {"contains": {"albumtype": "live"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Made in USA", "made-in-usa", "Labels & Releases", {
+            "name": "Made in USA",
+            "comment": "Released in the United States",
+            "any": [
+                {"is": {"releasecountry": "US"}},
+                {"is": {"releasecountry": "USA"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Made in UK", "made-in-uk", "Labels & Releases", {
+            "name": "Made in UK",
+            "comment": "Released in the United Kingdom — birthplace of countless genres",
+            "any": [
+                {"is": {"releasecountry": "GB"}},
+                {"is": {"releasecountry": "UK"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Made in Japan", "made-in-japan", "Labels & Releases", {
+            "name": "Made in Japan",
+            "comment": "Released in Japan — the home of bonus tracks",
+            "any": [
+                {"is": {"releasecountry": "JP"}},
+                {"is": {"releasecountry": "JPN"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Made in Germany", "made-in-germany", "Labels & Releases", {
+            "name": "Made in Germany",
+            "comment": "Released in Germany — precision engineering and electronic pioneers",
+            "any": [
+                {"is": {"releasecountry": "DE"}},
+                {"is": {"releasecountry": "DEU"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+
+        # ── Album Structure ──────────────────────────────────────────
+        ("Short EPs", "short-eps", "Album Structure", {
+            "name": "Short EPs",
+            "comment": "Albums with 6 or fewer tracks — EPs and mini-albums",
+            "all": [{"lt": {"tracktotal": 7}}, {"gt": {"tracktotal": 0}}],
+            "sort": "random", "limit": 200,
+        }),
+        ("Standard Albums", "standard-albums", "Album Structure", {
+            "name": "Standard Albums",
+            "comment": "Albums with 8-14 tracks — the classic LP format",
+            "all": [{"inTheRange": {"tracktotal": [8, 14]}}],
+            "sort": "random", "limit": 200,
+        }),
+        ("Mammoth Albums", "mammoth-albums", "Album Structure", {
+            "name": "Mammoth Albums",
+            "comment": "Albums with 20+ tracks — sprawling epics and deluxe editions",
+            "all": [{"gt": {"tracktotal": 19}}],
+            "sort": "random", "limit": 200,
+        }),
+        ("Box Sets", "box-sets", "Album Structure", {
+            "name": "Box Sets",
+            "comment": "Releases with 3+ discs — comprehensive collections and box sets",
+            "all": [{"gt": {"disctotal": 2}}],
+            "sort": "+albumartist,+album,+discnumber,+track",
+        }),
+        ("Double Albums", "double-albums", "Album Structure", {
+            "name": "Double Albums",
+            "comment": "2-disc releases — double albums and expanded editions",
+            "all": [{"is": {"disctotal": 2}}],
+            "sort": "+albumartist,+album,+discnumber,+track",
+        }),
+
+        # ── Dates & History ──────────────────────────────────────────
+        ("Reissued Classics", "reissued-classics", "Dates & History", {
+            "name": "Reissued Classics",
+            "comment": "Tracks where original date is before 1990 — vintage recordings, modern releases",
+            "all": [{"before": {"originaldate": "1990-01-01"}}],
+            "sort": "random", "limit": 200,
+        }),
+        ("Recorded Before Released", "recorded-before-released", "Dates & History", {
+            "name": "Recorded Before Released",
+            "comment": "Tracks with recording date data — vault recordings and studio session dates",
+            "all": [{"notContains": {"recordingdate": ""}}],
+            "sort": "random", "limit": 200,
+        }),
+        ("Brand New Releases", "brand-new-releases", "Dates & History", {
+            "name": "Brand New Releases",
+            "comment": "Release date in the last 90 days — freshly pressed",
+            "all": [{"inTheLast": {"releasedate": 90}}],
+            "sort": "releasedate", "order": "desc", "limit": 200,
+        }),
+        ("Loved This Week", "loved-this-week", "Dates & History", {
+            "name": "Loved This Week",
+            "comment": "Tracks loved in the last 7 days — this week's sonic crushes",
+            "all": [{"inTheLast": {"dateloved": 7}}],
+            "sort": "dateloved", "order": "desc", "limit": 100,
+        }),
+        ("Loved This Month", "loved-this-month", "Dates & History", {
+            "name": "Loved This Month",
+            "comment": "Tracks loved in the last 30 days — this month's highlights",
+            "all": [{"inTheLast": {"dateloved": 30}}],
+            "sort": "dateloved", "order": "desc", "limit": 100,
+        }),
+        ("Yesterday's Jams", "yesterdays-jams", "Dates & History", {
+            "name": "Yesterday's Jams",
+            "comment": "Played in the last 24 hours — what you were vibing to yesterday",
+            "all": [{"inTheLast": {"lastplayed": 1}}],
+            "sort": "lastplayed", "order": "desc", "limit": 50,
+        }),
+        ("This Year's Harvest", "this-years-harvest", "Dates & History", {
+            "name": "This Year's Harvest",
+            "comment": "Added to library this year — your annual haul",
+            "all": [{"inTheLast": {"dateadded": 365}}],
+            "sort": "dateadded", "order": "desc", "limit": 500,
+        }),
+
+        # ── Comments & Tags ──────────────────────────────────────────
+        ("Has Comments", "has-comments", "Comments & Tags", {
+            "name": "Has Comments",
+            "comment": "Tracks with something in the comment tag — little notes from the tagger",
+            "all": [{"notContains": {"comment": ""}}],
+            "sort": "random", "limit": 200,
+        }),
+        ("Subtitled Tracks", "subtitled-tracks", "Comments & Tags", {
+            "name": "Subtitled Tracks",
+            "comment": "Tracks with a subtitle — alternate versions, duets, and variations",
+            "all": [{"notContains": {"subtitle": ""}}],
+            "sort": "random", "limit": 200,
+        }),
+        ("Grouped Tracks", "grouped-tracks", "Comments & Tags", {
+            "name": "Grouped Tracks",
+            "comment": "Tracks with a grouping tag — custom categories beyond genre",
+            "all": [{"notContains": {"grouping": ""}}],
+            "sort": "+grouping,+artist,+album,+track",
+        }),
+        ("Album With Commentary", "album-with-commentary", "Comments & Tags", {
+            "name": "Album With Commentary",
+            "comment": "Albums with a comment in the album tag — liner notes in digital form",
+            "all": [{"notContains": {"albumcomment": ""}}],
+            "sort": "+album,+track",
+        }),
+        ("Disc Subtitled", "disc-subtitled", "Comments & Tags", {
+            "name": "Disc Subtitled",
+            "comment": "Tracks with disc subtitles — named discs in multi-disc releases",
+            "all": [{"notContains": {"discsubtitle": ""}}],
+            "sort": "+album,+discnumber,+track",
+        }),
+
+        # ── Metadata Completeness ────────────────────────────────────
+        ("Perfectly Tagged", "perfectly-tagged", "Metadata Completeness", {
+            "name": "Perfectly Tagged",
+            "comment": "Tracks with MusicBrainz ID, cover art, genre, and year — textbook metadata",
+            "all": [
+                {"notContains": {"mbz_recording_id": ""}},
+                {"is": {"hascoverart": True}},
+                {"notContains": {"genre": ""}},
+                {"gt": {"year": 0}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("MusicBrainz Tagged", "musicbrainz-tagged", "Metadata Completeness", {
+            "name": "MusicBrainz Tagged",
+            "comment": "Tracks with a MusicBrainz recording ID — database-verified metadata",
+            "all": [{"notContains": {"mbz_recording_id": ""}}],
+            "sort": "random", "limit": 200,
+        }),
+        ("No MusicBrainz ID", "no-musicbrainz-id", "Metadata Completeness", {
+            "name": "No MusicBrainz ID",
+            "comment": "Tracks missing a MusicBrainz ID — candidates for Picard tagging",
+            "all": [{"contains": {"mbz_recording_id": ""}}],
+            "sort": "+artist,+album,+track",
+        }),
+        ("Missing Genre", "missing-genre", "Metadata Completeness", {
+            "name": "Missing Genre",
+            "comment": "Tracks with no genre tag — the uncategorised wilderness",
+            "all": [{"contains": {"genre": ""}}],
+            "sort": "+artist,+album,+track",
+        }),
+        ("Missing Year", "missing-year", "Metadata Completeness", {
+            "name": "Missing Year",
+            "comment": "Tracks with year set to 0 or missing — when were these released?",
+            "all": [{"is": {"year": 0}}],
+            "sort": "+artist,+album,+track",
+        }),
+        ("Has ISRC", "has-isrc", "Metadata Completeness", {
+            "name": "Has ISRC",
+            "comment": "Tracks with an ISRC code — internationally standardised recordings",
+            "all": [{"notContains": {"isrc": ""}}],
+            "sort": "random", "limit": 200,
+        }),
+        ("Has Barcode", "has-barcode", "Metadata Completeness", {
+            "name": "Has Barcode",
+            "comment": "Releases with a barcode — commercially released and catalogued",
+            "all": [{"notContains": {"barcode": ""}}],
+            "sort": "random", "limit": 200,
+        }),
+        ("Catalog Numbered", "catalog-numbered", "Metadata Completeness", {
+            "name": "Catalog Numbered",
+            "comment": "Releases with a catalog number — label-indexed and official",
+            "all": [{"notContains": {"catalognumber": ""}}],
+            "sort": "+recordlabel,+catalognumber,+track",
+        }),
+        ("Well-Tagged Loved", "well-tagged-loved", "Metadata Completeness", {
+            "name": "Well-Tagged Loved",
+            "comment": "Loved tracks with genre, year, cover art, and MB ID — your curated jewels",
+            "all": [
+                {"is": {"loved": True}},
+                {"notContains": {"genre": ""}},
+                {"gt": {"year": 0}},
+                {"is": {"hascoverart": True}},
+                {"notContains": {"mbz_recording_id": ""}},
+            ],
+            "sort": "+artist,+album,+track",
+        }),
+
+        # ── Media & Encoding ─────────────────────────────────────────
+        ("CD Rips", "cd-rips", "Media & Encoding", {
+            "name": "CD Rips",
+            "comment": "Media type: CD — ripped from compact disc",
+            "all": [{"is": {"media": "CD"}}],
+            "sort": "random", "limit": 200,
+        }),
+        ("Vinyl Rips", "vinyl-rips", "Media & Encoding", {
+            "name": "Vinyl Rips",
+            "comment": "Media type: Vinyl — digitised from the grooves",
+            "any": [
+                {"is": {"media": "Vinyl"}},
+                {"is": {"media": "vinyl"}},
+                {"is": {"media": "12\" Vinyl"}},
+                {"is": {"media": "7\" Vinyl"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Digital Media", "digital-media", "Media & Encoding", {
+            "name": "Digital Media",
+            "comment": "Media type: Digital Media — born digital, no physical source",
+            "any": [
+                {"is": {"media": "Digital Media"}},
+                {"is": {"media": "digital"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Cassette Captures", "cassette-captures", "Media & Encoding", {
+            "name": "Cassette Captures",
+            "comment": "Media type: Cassette — tape hiss and warm analogue charm",
+            "any": [
+                {"is": {"media": "Cassette"}},
+                {"is": {"media": "cassette"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Encoded By You", "encoded-by-you", "Media & Encoding", {
+            "name": "Encoded By You",
+            "comment": "Tracks with an encoded-by tag — personally ripped or converted",
+            "all": [{"notContains": {"encodedby": ""}}],
+            "sort": "+encodedby,+album,+track",
+        }),
+        ("Encoder Settings Log", "encoder-settings-log", "Media & Encoding", {
+            "name": "Encoder Settings Log",
+            "comment": "Tracks with encoder settings recorded — the forensic audit trail",
+            "all": [{"notContains": {"encodersettings": ""}}],
+            "sort": "random", "limit": 200,
+        }),
+
+        # ── Copyright & Licensing ────────────────────────────────────
+        ("Copyrighted Works", "copyrighted-works", "Copyright & Licensing", {
+            "name": "Copyrighted Works",
+            "comment": "Tracks with copyright info — properly attributed",
+            "all": [{"notContains": {"copyright": ""}}],
+            "sort": "+copyright,+album,+track",
+        }),
+        ("Licensed Music", "licensed-music", "Copyright & Licensing", {
+            "name": "Licensed Music",
+            "comment": "Tracks with a license tag — Creative Commons, royalty-free, and more",
+            "all": [{"notContains": {"license": ""}}],
+            "sort": "+license,+artist,+album",
+        }),
+        ("Has Website", "has-website", "Copyright & Licensing", {
+            "name": "Has Website",
+            "comment": "Tracks linking to an artist or album website — direct to the source",
+            "all": [{"notContains": {"website": ""}}],
+            "sort": "+artist,+album,+track",
+        }),
+
+        # ── Title Patterns ───────────────────────────────────────────
+        ("Instrumental Tracks", "instrumental-tracks", "Title Patterns", {
+            "name": "Instrumental Tracks",
+            "comment": "Titles containing 'instrumental' — no vocals, pure music",
+            "any": [
+                {"contains": {"title": "instrumental"}},
+                {"contains": {"title": "Instrumental"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Acoustic Versions", "acoustic-versions", "Title Patterns", {
+            "name": "Acoustic Versions",
+            "comment": "Titles containing 'acoustic' — stripped-back reworkings",
+            "any": [
+                {"contains": {"title": "acoustic"}},
+                {"contains": {"title": "Acoustic"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Live Recordings", "live-recordings", "Title Patterns", {
+            "name": "Live Recordings",
+            "comment": "Titles containing 'live' — captured in the moment",
+            "any": [
+                {"contains": {"title": "live"}},
+                {"contains": {"title": "Live"}},
+                {"contains": {"subtitle": "live"}},
+                {"contains": {"subtitle": "Live"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Demo Recordings", "demo-recordings", "Title Patterns", {
+            "name": "Demo Recordings",
+            "comment": "Titles containing 'demo' — rough diamonds from the studio",
+            "any": [
+                {"contains": {"title": "demo"}},
+                {"contains": {"title": "Demo"}},
+                {"contains": {"subtitle": "demo"}},
+                {"contains": {"subtitle": "Demo"}},
+                {"contains": {"albumversion": "demo"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Remix Versions", "remix-versions", "Title Patterns", {
+            "name": "Remix Versions",
+            "comment": "Titles or subtitles containing 'remix' — reworked for the floor",
+            "any": [
+                {"contains": {"title": "remix"}},
+                {"contains": {"title": "Remix"}},
+                {"contains": {"subtitle": "remix"}},
+                {"contains": {"subtitle": "Remix"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Remastered Editions", "remastered-editions", "Title Patterns", {
+            "name": "Remastered Editions",
+            "comment": "Tracks marked as remastered — polished for a new generation",
+            "any": [
+                {"contains": {"title": "remaster"}},
+                {"contains": {"title": "Remaster"}},
+                {"contains": {"subtitle": "remaster"}},
+                {"contains": {"albumversion": "remaster"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Bonus Tracks", "bonus-tracks", "Title Patterns", {
+            "name": "Bonus Tracks",
+            "comment": "Tracks with 'bonus' in the title — the hidden extras",
+            "any": [
+                {"contains": {"title": "bonus"}},
+                {"contains": {"title": "Bonus"}},
+                {"contains": {"subtitle": "bonus"}},
+                {"contains": {"albumversion": "bonus"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Extended Mixes", "extended-mixes", "Title Patterns", {
+            "name": "Extended Mixes",
+            "comment": "Titles containing 'extended' — longer versions for deeper listening",
+            "any": [
+                {"contains": {"title": "extended"}},
+                {"contains": {"title": "Extended"}},
+                {"contains": {"subtitle": "extended"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Deluxe Editions", "deluxe-editions", "Title Patterns", {
+            "name": "Deluxe Editions",
+            "comment": "Album versions marked as deluxe — expanded with extras",
+            "any": [
+                {"contains": {"albumversion": "deluxe"}},
+                {"contains": {"albumversion": "Deluxe"}},
+                {"contains": {"album": "deluxe"}},
+                {"contains": {"album": "Deluxe"}},
+            ],
+            "sort": "+album,+track",
+        }),
+        ("Covers & Tributes", "covers-and-tributes", "Title Patterns", {
+            "name": "Covers & Tributes",
+            "comment": "Titles containing 'cover' or 'tribute' — homage tracks",
+            "any": [
+                {"contains": {"title": "cover"}},
+                {"contains": {"title": "Cover"}},
+                {"contains": {"title": "tribute"}},
+                {"contains": {"title": "Tribute"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Featuring Collaborations", "featuring-collaborations", "Title Patterns", {
+            "name": "Featuring Collaborations",
+            "comment": "Titles with 'feat.' or 'ft.' — collaborative moments",
+            "any": [
+                {"contains": {"title": "feat."}},
+                {"contains": {"title": "ft."}},
+                {"contains": {"title": "Feat."}},
+                {"contains": {"title": "Ft."}},
+                {"contains": {"title": "featuring"}},
+                {"contains": {"title": "Featuring"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Numbered Sequels", "numbered-sequels", "Title Patterns", {
+            "name": "Numbered Sequels",
+            "comment": "Titles containing 'Part' or 'Pt.' — serialised storytelling",
+            "any": [
+                {"contains": {"title": "Part"}},
+                {"contains": {"title": "Pt."}},
+                {"contains": {"title": "pt."}},
+            ],
+            "sort": "+artist,+title",
+        }),
+        ("Interlude & Skit", "interlude-and-skit", "Title Patterns", {
+            "name": "Interlude & Skit",
+            "comment": "Titles containing 'interlude', 'skit', or 'intro' — the spaces between",
+            "any": [
+                {"contains": {"title": "interlude"}},
+                {"contains": {"title": "Interlude"}},
+                {"contains": {"title": "skit"}},
+                {"contains": {"title": "Skit"}},
+                {"contains": {"title": "intro"}},
+                {"contains": {"title": "Intro"}},
+            ],
+            "sort": "random", "limit": 100,
+        }),
+        ("Self-Titled Tracks", "self-titled-tracks", "Title Patterns", {
+            "name": "Self-Titled Tracks",
+            "comment": "Tracks where title starts with the same text as the album — the namesake",
+            "all": [{"notContains": {"title": ""}}],
+            "sort": "+artist,+album,+track",
+        }),
+        ("Parenthetical Versions", "parenthetical-versions", "Title Patterns", {
+            "name": "Parenthetical Versions",
+            "comment": "Titles containing parentheses — alternate versions, editions, and notes",
+            "all": [{"contains": {"title": "("}}],
+            "sort": "random", "limit": 200,
+        }),
+
+        # ── Filepath & Organisation ──────────────────────────────────
+        ("The A-List", "the-a-list", "Filepath & Organisation", {
+            "name": "The A-List",
+            "comment": "Artists starting with 'A' — top of the alphabet, top of the pile",
+            "all": [{"startsWith": {"artist": "A"}}],
+            "sort": "+artist,+album,+track",
+        }),
+        ("The Number Ones", "the-number-ones", "Filepath & Organisation", {
+            "name": "The Number Ones",
+            "comment": "Tracks with numbers in the title — countable music",
+            "any": [
+                {"contains": {"title": "1"}},
+                {"contains": {"title": "2"}},
+                {"contains": {"title": "3"}},
+                {"contains": {"title": "one"}},
+                {"contains": {"title": "One"}},
+                {"contains": {"title": "two"}},
+                {"contains": {"title": "Two"}},
+                {"contains": {"title": "three"}},
+                {"contains": {"title": "Three"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("The 'The' Bands", "the-the-bands", "Filepath & Organisation", {
+            "name": "The 'The' Bands",
+            "comment": "Artists starting with 'The' — the most common word in band names",
+            "all": [{"startsWith": {"artist": "The "}}],
+            "sort": "+artist,+album,+track", "limit": 500,
+        }),
     ]
 
     def deploy_presets(self) -> None:
