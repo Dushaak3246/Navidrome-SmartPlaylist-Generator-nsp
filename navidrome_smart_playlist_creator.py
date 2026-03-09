@@ -699,6 +699,299 @@ class SmartPlaylistCreator:
 
         return playlist
 
+    # ── "This is ..." playlist ────────────────────────────────────────────────
+
+    def create_this_is_playlist(self) -> None:
+        """Interactive builder for artist-focused 'This is ...' playlists."""
+        self.rule('Create a "This is ..." Playlist')
+        self.out(
+            '\n[dim]Build a smart playlist centred on a single album artist — similar\n'
+            'to Spotify\'s "This is ..." playlists but with full control over\n'
+            'track selection, sort order, and limits.[/dim]\n'
+        )
+
+        # ── Artist name
+        artist = self.prompt("Album artist name").strip()
+        if not artist:
+            self.out("[yellow]No artist entered — cancelled.[/yellow]")
+            return
+
+        # ── Generation method
+        self.rule("Generation Method")
+        self.out(
+            f'\n[dim]How should tracks be chosen for "This is {artist}"?[/dim]'
+        )
+
+        method = self.select_option(
+            "Pick a generation method:",
+            [
+                ("random",          "Random selection — a shuffled mix"),
+                ("top_rated",       "Top rated — highest-rated tracks first"),
+                ("most_played",     "Most played — sort by play count"),
+                ("recently_played", "Recently played — tracks you\'ve been listening to"),
+                ("recently_added",  "Recently added — newest additions first"),
+                ("loved",           "Loved tracks only — just your favourites"),
+                ("deep_cuts",       "Deep cuts — skip the obvious hits (track 4+)"),
+                ("greatest_hits",   "Greatest hits — loved OR rated 4+ OR played 10+"),
+                ("chronological",   "Chronological — every track by release year"),
+                ("reverse_chrono",  "Reverse chronological — newest releases first"),
+                ("longest",         "Longest tracks — epic deep listens"),
+                ("shortest",        "Shortest tracks — quick-fire hits"),
+                ("high_energy",     "High energy — highest BPM first"),
+                ("chill",           "Chill — lowest BPM first"),
+                ("lossless_only",   "Lossless only — FLAC / hi-res tracks"),
+                ("unplayed",        "Unplayed — tracks you haven\'t heard yet"),
+                ("rare_gems",       "Rare gems — low play count but high rating"),
+                ("album_openers",   "Album openers — track 1 from every album"),
+                ("album_closers",   "Album closers — the last tracks on each album"),
+                ("singles",         "Singles — short tracks from early in the album"),
+            ],
+            allow_back=True,
+        )
+        if method is None:
+            return
+        method = str(method)
+
+        # ── Build the playlist dict based on method
+        playlist: Dict[str, Any] = {}
+        conditions: List[Dict[str, Any]] = []
+
+        # Base condition: match the album artist
+        artist_condition = {"is": {"albumartist": artist}}
+
+        if method == "random":
+            conditions.append(artist_condition)
+            playlist["all"] = conditions
+            playlist["sort"] = "random"
+
+        elif method == "top_rated":
+            conditions.append(artist_condition)
+            playlist["all"] = conditions
+            playlist["sort"] = "rating"
+            playlist["order"] = "desc"
+
+        elif method == "most_played":
+            conditions.append(artist_condition)
+            playlist["all"] = conditions
+            playlist["sort"] = "playcount"
+            playlist["order"] = "desc"
+
+        elif method == "recently_played":
+            conditions.append(artist_condition)
+            conditions.append({"inTheLast": {"lastplayed": 90}})
+            playlist["all"] = conditions
+            playlist["sort"] = "lastplayed"
+            playlist["order"] = "desc"
+
+        elif method == "recently_added":
+            conditions.append(artist_condition)
+            playlist["all"] = conditions
+            playlist["sort"] = "dateadded"
+            playlist["order"] = "desc"
+
+        elif method == "loved":
+            conditions.append(artist_condition)
+            conditions.append({"is": {"loved": True}})
+            playlist["all"] = conditions
+            playlist["sort"] = "random"
+
+        elif method == "deep_cuts":
+            conditions.append(artist_condition)
+            conditions.append({"gt": {"track": 3}})
+            playlist["all"] = conditions
+            playlist["sort"] = "random"
+
+        elif method == "greatest_hits":
+            conditions.append(artist_condition)
+            conditions.append(
+                {"any": [
+                    {"is": {"loved": True}},
+                    {"gt": {"rating": 3}},
+                    {"gt": {"playcount": 9}},
+                ]}
+            )
+            playlist["all"] = conditions
+            playlist["sort"] = "playcount"
+            playlist["order"] = "desc"
+
+        elif method == "chronological":
+            conditions.append(artist_condition)
+            playlist["all"] = conditions
+            playlist["sort"] = "+year,+discnumber,+track"
+
+        elif method == "reverse_chrono":
+            conditions.append(artist_condition)
+            playlist["all"] = conditions
+            playlist["sort"] = "-year,+discnumber,+track"
+
+        elif method == "longest":
+            conditions.append(artist_condition)
+            playlist["all"] = conditions
+            playlist["sort"] = "duration"
+            playlist["order"] = "desc"
+
+        elif method == "shortest":
+            conditions.append(artist_condition)
+            playlist["all"] = conditions
+            playlist["sort"] = "duration"
+            playlist["order"] = "asc"
+
+        elif method == "high_energy":
+            conditions.append(artist_condition)
+            conditions.append({"gt": {"bpm": 0}})
+            playlist["all"] = conditions
+            playlist["sort"] = "bpm"
+            playlist["order"] = "desc"
+
+        elif method == "chill":
+            conditions.append(artist_condition)
+            conditions.append({"gt": {"bpm": 0}})
+            playlist["all"] = conditions
+            playlist["sort"] = "bpm"
+            playlist["order"] = "asc"
+
+        elif method == "lossless_only":
+            conditions.append(artist_condition)
+            conditions.append({"is": {"filetype": "flac"}})
+            playlist["all"] = conditions
+            playlist["sort"] = "+year,+discnumber,+track"
+
+        elif method == "unplayed":
+            conditions.append(artist_condition)
+            conditions.append({"is": {"playcount": 0}})
+            playlist["all"] = conditions
+            playlist["sort"] = "random"
+
+        elif method == "rare_gems":
+            conditions.append(artist_condition)
+            conditions.append({"gt": {"rating": 3}})
+            conditions.append({"lt": {"playcount": 5}})
+            playlist["all"] = conditions
+            playlist["sort"] = "rating"
+            playlist["order"] = "desc"
+
+        elif method == "album_openers":
+            conditions.append(artist_condition)
+            conditions.append({"is": {"track": 1}})
+            playlist["all"] = conditions
+            playlist["sort"] = "+year,+album"
+
+        elif method == "album_closers":
+            conditions.append(artist_condition)
+            conditions.append({"gt": {"track": 8}})
+            conditions.append({"gt": {"duration": 180}})
+            playlist["all"] = conditions
+            playlist["sort"] = "+year,+album"
+
+        elif method == "singles":
+            conditions.append(artist_condition)
+            conditions.append({"lt": {"track": 4}})
+            conditions.append({"lt": {"duration": 270}})
+            playlist["all"] = conditions
+            playlist["sort"] = "playcount"
+            playlist["order"] = "desc"
+
+        # ── Customise sort order?
+        self.rule("Sort Order")
+        self.out(
+            f'\n[dim]Default sort: [cyan]{playlist.get("sort", "random")}[/cyan]'
+            f'{" " + playlist.get("order", "") if "order" in playlist else ""}[/dim]'
+        )
+        if self.confirm("Change the sort order?", default=False):
+            sort_parts: List[str] = []
+            while True:
+                sort_key = self.select_option("Sort by:", self.sort_options)
+                sort_key = str(sort_key)
+
+                if sort_key == "random":
+                    sort_parts = ["random"]
+                    break
+
+                direction = self.select_option(
+                    f'Direction for "{sort_key}":',
+                    [
+                        ("asc",  "Ascending   [dim](oldest / lowest first)[/dim]"),
+                        ("desc", "Descending  [dim](newest / highest first)[/dim]"),
+                    ],
+                )
+                direction = str(direction)
+                prefix_char = "-" if direction == "desc" else "+"
+                sort_parts.append(f"{prefix_char}{sort_key}")
+
+                if not self.confirm("Add another sort field?", default=False):
+                    break
+
+            # Remove existing sort/order before re-setting
+            playlist.pop("sort", None)
+            playlist.pop("order", None)
+
+            if len(sort_parts) == 1:
+                if sort_parts[0] == "random":
+                    playlist["sort"] = "random"
+                else:
+                    field = sort_parts[0].lstrip("+-")
+                    is_desc = sort_parts[0].startswith("-")
+                    playlist["sort"] = field
+                    playlist["order"] = "desc" if is_desc else "asc"
+            else:
+                playlist["sort"] = ",".join(sort_parts)
+
+        # ── Track limit
+        self.rule("Track Limit")
+        default_limit = "50"
+        self.out(
+            f'\n[dim]How many tracks should the playlist contain? (default: {default_limit})[/dim]'
+        )
+        while True:
+            raw = self.prompt("Max tracks", default=default_limit)
+            try:
+                limit = int(raw)
+                if limit > 0:
+                    playlist["limit"] = limit
+                    break
+                self.out("[red]Please enter a positive number.[/red]")
+            except ValueError:
+                self.out("[red]Please enter a whole number.[/red]")
+
+        # ── Finalise
+        default_name = f"This is {artist}"
+        method_labels = {
+            "random": "shuffled mix",
+            "top_rated": "top rated",
+            "most_played": "most played",
+            "recently_played": "recently played",
+            "recently_added": "recently added",
+            "loved": "loved tracks",
+            "deep_cuts": "deep cuts",
+            "greatest_hits": "greatest hits",
+            "chronological": "chronological",
+            "reverse_chrono": "reverse chronological",
+            "longest": "longest tracks",
+            "shortest": "shortest tracks",
+            "high_energy": "high energy",
+            "chill": "chill",
+            "lossless_only": "lossless only",
+            "unplayed": "unplayed",
+            "rare_gems": "rare gems",
+            "album_openers": "album openers",
+            "album_closers": "album closers",
+            "singles": "singles",
+        }
+        method_desc = method_labels.get(method, method)
+        default_comment = f"A \"This is {artist}\" playlist — {method_desc}"
+
+        # Allow renaming
+        self.rule("Playlist Details")
+        name = self.prompt("Playlist name", default=default_name)
+        playlist["name"] = name
+
+        comment = self.prompt("Description", default=default_comment)
+        if comment:
+            playlist["comment"] = comment
+
+        # ── Preview & save
+        self.preview_and_save(playlist)
+
     # ── Save ──────────────────────────────────────────────────────────────────
 
     def preview_and_save(self, playlist: Dict[str, Any]) -> None:
@@ -3411,6 +3704,7 @@ class SmartPlaylistCreator:
                 "What would you like to do?",
                 [
                     ("create",    "Create a new smart playlist"),
+                    ("thisis",    'Create a "This is ..." artist playlist'),
                     ("presets",   "Deploy preset playlists"),
                     ("examples",  "Browse example JSON"),
                     ("fields",    "View all available fields"),
@@ -3428,6 +3722,14 @@ class SmartPlaylistCreator:
                 playlist = self.create_smart_playlist()
                 if playlist:
                     self.preview_and_save(playlist)
+
+            elif choice == "thisis":
+                if not self.playlist_dir:
+                    self.out("[yellow]Please set a save directory first.[/yellow]")
+                    self.set_playlist_directory()
+                    if not self.playlist_dir:
+                        continue
+                self.create_this_is_playlist()
 
             elif choice == "presets":
                 if not self.playlist_dir:
