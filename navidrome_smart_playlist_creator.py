@@ -1775,6 +1775,667 @@ class SmartPlaylistCreator:
             ],
             "sort": "random", "limit": 100,
         }),
+
+        # ── Genre ────────────────────────────────────────────────────
+        ("Rock Essentials", "rock-essentials", "Genre", {
+            "name": "Rock Essentials",
+            "comment": "All your rock tracks — the backbone of any collection",
+            "all": [{"contains": {"genre": "rock"}}],
+            "sort": "random", "limit": 200,
+        }),
+        ("Pop Hits", "pop-hits", "Genre", {
+            "name": "Pop Hits",
+            "comment": "Pure pop — catchy, polished, irresistible",
+            "all": [{"contains": {"genre": "pop"}}],
+            "sort": "random", "limit": 200,
+        }),
+        ("Hip-Hop & Rap", "hip-hop-and-rap", "Genre", {
+            "name": "Hip-Hop & Rap",
+            "comment": "Beats, bars, and bass — every hip-hop track in your library",
+            "any": [
+                {"contains": {"genre": "hip-hop"}},
+                {"contains": {"genre": "hip hop"}},
+                {"contains": {"genre": "rap"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Electronic & EDM", "electronic-and-edm", "Genre", {
+            "name": "Electronic & EDM",
+            "comment": "Synths, beats, and drops — the electronic spectrum",
+            "any": [
+                {"contains": {"genre": "electronic"}},
+                {"contains": {"genre": "edm"}},
+                {"contains": {"genre": "techno"}},
+                {"contains": {"genre": "house"}},
+                {"contains": {"genre": "trance"}},
+                {"contains": {"genre": "drum and bass"}},
+                {"contains": {"genre": "dubstep"}},
+                {"contains": {"genre": "electro"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Jazz Collection", "jazz-collection", "Genre", {
+            "name": "Jazz Collection",
+            "comment": "Smooth, free, bebop, fusion — all that jazz",
+            "all": [{"contains": {"genre": "jazz"}}],
+            "sort": "random", "limit": 200,
+        }),
+        ("Blues Sessions", "blues-sessions", "Genre", {
+            "name": "Blues Sessions",
+            "comment": "12 bars of feeling — every shade of blue",
+            "all": [{"contains": {"genre": "blues"}}],
+            "sort": "random", "limit": 200,
+        }),
+        ("Metal Mayhem", "metal-mayhem", "Genre", {
+            "name": "Metal Mayhem",
+            "comment": "Heavy, heavier, heaviest — all metal subgenres welcome",
+            "all": [{"contains": {"genre": "metal"}}],
+            "sort": "random", "limit": 200,
+        }),
+        ("Classical Corner", "classical-corner", "Genre", {
+            "name": "Classical Corner",
+            "comment": "Centuries of composed genius — from baroque to modern classical",
+            "all": [{"contains": {"genre": "classical"}}],
+            "sort": "random", "limit": 200,
+        }),
+        ("Country Roads", "country-roads", "Genre", {
+            "name": "Country Roads",
+            "comment": "Twang, steel guitars, and storytelling — country & western",
+            "any": [
+                {"contains": {"genre": "country"}},
+                {"contains": {"genre": "western"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("R&B & Soul", "rnb-and-soul", "Genre", {
+            "name": "R&B & Soul",
+            "comment": "Rhythm, blues, and soul — smooth grooves",
+            "any": [
+                {"contains": {"genre": "r&b"}},
+                {"contains": {"genre": "soul"}},
+                {"contains": {"genre": "rhythm and blues"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Folk & Acoustic", "folk-and-acoustic", "Genre", {
+            "name": "Folk & Acoustic",
+            "comment": "Stripped back, honest, raw — campfire music",
+            "any": [
+                {"contains": {"genre": "folk"}},
+                {"contains": {"genre": "acoustic"}},
+                {"contains": {"genre": "singer-songwriter"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Punk Rock", "punk-rock", "Genre", {
+            "name": "Punk Rock",
+            "comment": "Three chords and the truth — fast, loud, attitude",
+            "all": [{"contains": {"genre": "punk"}}],
+            "sort": "random", "limit": 200,
+        }),
+        ("Reggae & Dub", "reggae-and-dub", "Genre", {
+            "name": "Reggae & Dub",
+            "comment": "Island rhythms and bass-heavy echoes",
+            "any": [
+                {"contains": {"genre": "reggae"}},
+                {"contains": {"genre": "dub"}},
+                {"contains": {"genre": "ska"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Funk Machine", "funk-machine", "Genre", {
+            "name": "Funk Machine",
+            "comment": "Get up offa that thing — pure funk",
+            "all": [{"contains": {"genre": "funk"}}],
+            "sort": "random", "limit": 200,
+        }),
+        ("Disco Nights", "disco-nights", "Genre", {
+            "name": "Disco Nights",
+            "comment": "Mirror balls and four-on-the-floor — disco never died",
+            "all": [{"contains": {"genre": "disco"}}],
+            "sort": "random", "limit": 200,
+        }),
+        ("Indie & Alternative", "indie-and-alternative", "Genre", {
+            "name": "Indie & Alternative",
+            "comment": "Left of the dial — indie and alt everything",
+            "any": [
+                {"contains": {"genre": "indie"}},
+                {"contains": {"genre": "alternative"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Ambient & Downtempo", "ambient-and-downtempo", "Genre", {
+            "name": "Ambient & Downtempo",
+            "comment": "Sonic wallpaper — ambient textures and slow atmospheres",
+            "any": [
+                {"contains": {"genre": "ambient"}},
+                {"contains": {"genre": "downtempo"}},
+                {"contains": {"genre": "chillout"}},
+                {"contains": {"genre": "new age"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Latin Flavours", "latin-flavours", "Genre", {
+            "name": "Latin Flavours",
+            "comment": "Salsa, bossa nova, reggaeton, and more — ritmo latino",
+            "any": [
+                {"contains": {"genre": "latin"}},
+                {"contains": {"genre": "salsa"}},
+                {"contains": {"genre": "bossa nova"}},
+                {"contains": {"genre": "reggaeton"}},
+                {"contains": {"genre": "samba"}},
+                {"contains": {"genre": "cumbia"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Soundtrack & Score", "soundtrack-and-score", "Genre", {
+            "name": "Soundtrack & Score",
+            "comment": "Film scores, game soundtracks, and musical theatre",
+            "any": [
+                {"contains": {"genre": "soundtrack"}},
+                {"contains": {"genre": "score"}},
+                {"contains": {"genre": "film"}},
+                {"contains": {"genre": "game"}},
+                {"contains": {"genre": "musical"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("World Music", "world-music", "Genre", {
+            "name": "World Music",
+            "comment": "Global sounds — music from every corner of the planet",
+            "any": [
+                {"contains": {"genre": "world"}},
+                {"contains": {"genre": "afrobeat"}},
+                {"contains": {"genre": "celtic"}},
+                {"contains": {"genre": "flamenco"}},
+                {"contains": {"genre": "african"}},
+                {"contains": {"genre": "arabic"}},
+                {"contains": {"genre": "indian"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Experimental & Avant-Garde", "experimental-and-avant-garde", "Genre", {
+            "name": "Experimental & Avant-Garde",
+            "comment": "The outer limits — music that defies categorisation",
+            "any": [
+                {"contains": {"genre": "experimental"}},
+                {"contains": {"genre": "avant-garde"}},
+                {"contains": {"genre": "noise"}},
+                {"contains": {"genre": "industrial"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Gospel & Spiritual", "gospel-and-spiritual", "Genre", {
+            "name": "Gospel & Spiritual",
+            "comment": "Hallelujah — uplifting gospel and spiritual music",
+            "any": [
+                {"contains": {"genre": "gospel"}},
+                {"contains": {"genre": "spiritual"}},
+                {"contains": {"genre": "christian"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+
+        # ── Genre Fusions ────────────────────────────────────────────
+        ("Loved Rock", "loved-rock", "Genre Fusions", {
+            "name": "Loved Rock",
+            "comment": "Rock tracks you've loved — your personal rock hall of fame",
+            "all": [{"contains": {"genre": "rock"}}, {"is": {"loved": True}}],
+            "sort": "random", "limit": 200,
+        }),
+        ("Jazz in FLAC", "jazz-in-flac", "Genre Fusions", {
+            "name": "Jazz in FLAC",
+            "comment": "Jazz the way it should be heard — lossless and warm",
+            "all": [{"contains": {"genre": "jazz"}}, {"is": {"filetype": "flac"}}],
+            "sort": "random", "limit": 200,
+        }),
+        ("Top Rated Electronic", "top-rated-electronic", "Genre Fusions", {
+            "name": "Top Rated Electronic",
+            "comment": "Your best electronic tracks — rated 4 or higher",
+            "all": [
+                {"any": [
+                    {"contains": {"genre": "electronic"}},
+                    {"contains": {"genre": "techno"}},
+                    {"contains": {"genre": "house"}},
+                ]},
+                {"gt": {"rating": 3}},
+            ],
+            "sort": "rating", "order": "desc", "limit": 100,
+        }),
+        ("Metal Marathons", "metal-marathons", "Genre Fusions", {
+            "name": "Metal Marathons",
+            "comment": "Metal tracks over 7 minutes — epic prog and doom journeys",
+            "all": [{"contains": {"genre": "metal"}}, {"gt": {"duration": 420}}],
+            "sort": "duration", "order": "desc", "limit": 100,
+        }),
+        ("Mellow Classics", "mellow-classics", "Genre Fusions", {
+            "name": "Mellow Classics",
+            "comment": "Classical tracks under 100 BPM — serene and peaceful",
+            "all": [
+                {"contains": {"genre": "classical"}},
+                {"lt": {"bpm": 100}},
+                {"gt": {"bpm": 0}},
+            ],
+            "sort": "random", "limit": 100,
+        }),
+        ("Unplayed Genres", "unplayed-genres", "Genre Fusions", {
+            "name": "Unplayed Genres",
+            "comment": "Never-played tracks from jazz, classical, or folk — explore your blind spots",
+            "all": [
+                {"any": [
+                    {"contains": {"genre": "jazz"}},
+                    {"contains": {"genre": "classical"}},
+                    {"contains": {"genre": "folk"}},
+                ]},
+                {"is": {"playcount": 0}},
+            ],
+            "sort": "random", "limit": 100,
+        }),
+        ("Hip-Hop Classics", "hip-hop-classics", "Genre Fusions", {
+            "name": "Hip-Hop Classics",
+            "comment": "Pre-2000 hip-hop — golden age bars and beats",
+            "all": [
+                {"any": [
+                    {"contains": {"genre": "hip-hop"}},
+                    {"contains": {"genre": "hip hop"}},
+                    {"contains": {"genre": "rap"}},
+                ]},
+                {"lt": {"year": 2000}},
+                {"gt": {"year": 0}},
+            ],
+            "sort": "year", "order": "asc", "limit": 200,
+        }),
+        ("Pop Perfection", "pop-perfection", "Genre Fusions", {
+            "name": "Pop Perfection",
+            "comment": "Pop tracks rated 5 stars — verified bangers only",
+            "all": [{"contains": {"genre": "pop"}}, {"is": {"rating": 5}}],
+            "sort": "random", "limit": 200,
+        }),
+        ("Punk Under 2 Minutes", "punk-under-2-minutes", "Genre Fusions", {
+            "name": "Punk Under 2 Minutes",
+            "comment": "The punkest tracks — blisteringly short, maximum energy",
+            "all": [{"contains": {"genre": "punk"}}, {"lt": {"duration": 120}}],
+            "sort": "duration", "order": "asc", "limit": 100,
+        }),
+        ("Epic Soundtracks", "epic-soundtracks", "Genre Fusions", {
+            "name": "Epic Soundtracks",
+            "comment": "Soundtrack tracks over 5 mins — cinematic epics",
+            "all": [
+                {"any": [
+                    {"contains": {"genre": "soundtrack"}},
+                    {"contains": {"genre": "score"}},
+                ]},
+                {"gt": {"duration": 300}},
+            ],
+            "sort": "duration", "order": "desc", "limit": 100,
+        }),
+
+        # ── Mood ─────────────────────────────────────────────────────
+        ("Happy Vibes", "happy-vibes", "Mood", {
+            "name": "Happy Vibes",
+            "comment": "Tracks tagged with a happy mood — guaranteed smiles",
+            "any": [
+                {"contains": {"mood": "happy"}},
+                {"contains": {"mood": "cheerful"}},
+                {"contains": {"mood": "joyful"}},
+                {"contains": {"mood": "upbeat"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Sad Songs", "sad-songs", "Mood", {
+            "name": "Sad Songs",
+            "comment": "Permission to feel — melancholy, sad, somber tracks",
+            "any": [
+                {"contains": {"mood": "sad"}},
+                {"contains": {"mood": "melancholy"}},
+                {"contains": {"mood": "somber"}},
+                {"contains": {"mood": "sorrowful"}},
+                {"contains": {"mood": "lonely"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Energetic", "energetic", "Mood", {
+            "name": "Energetic",
+            "comment": "High-energy mood tags — for when you need a boost",
+            "any": [
+                {"contains": {"mood": "energetic"}},
+                {"contains": {"mood": "uplifting"}},
+                {"contains": {"mood": "powerful"}},
+                {"contains": {"mood": "exciting"}},
+                {"contains": {"mood": "exhilarating"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Relaxing", "relaxing", "Mood", {
+            "name": "Relaxing",
+            "comment": "Chill, calm, peaceful — music to decompress to",
+            "any": [
+                {"contains": {"mood": "relaxing"}},
+                {"contains": {"mood": "calm"}},
+                {"contains": {"mood": "peaceful"}},
+                {"contains": {"mood": "soothing"}},
+                {"contains": {"mood": "tranquil"}},
+                {"contains": {"mood": "serene"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Aggressive", "aggressive", "Mood", {
+            "name": "Aggressive",
+            "comment": "Raw, angry, intense — music with teeth",
+            "any": [
+                {"contains": {"mood": "aggressive"}},
+                {"contains": {"mood": "angry"}},
+                {"contains": {"mood": "intense"}},
+                {"contains": {"mood": "fierce"}},
+                {"contains": {"mood": "hostile"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Romantic", "romantic", "Mood", {
+            "name": "Romantic",
+            "comment": "Love songs and tender feelings — set the mood",
+            "any": [
+                {"contains": {"mood": "romantic"}},
+                {"contains": {"mood": "love"}},
+                {"contains": {"mood": "tender"}},
+                {"contains": {"mood": "passionate"}},
+                {"contains": {"mood": "sensual"}},
+                {"contains": {"mood": "intimate"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Dark & Brooding", "dark-and-brooding", "Mood", {
+            "name": "Dark & Brooding",
+            "comment": "Gothic, moody, ominous — for your darker moments",
+            "any": [
+                {"contains": {"mood": "dark"}},
+                {"contains": {"mood": "brooding"}},
+                {"contains": {"mood": "ominous"}},
+                {"contains": {"mood": "gothic"}},
+                {"contains": {"mood": "menacing"}},
+                {"contains": {"mood": "eerie"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Dreamy", "dreamy", "Mood", {
+            "name": "Dreamy",
+            "comment": "Ethereal, floating, otherworldly — music from another dimension",
+            "any": [
+                {"contains": {"mood": "dreamy"}},
+                {"contains": {"mood": "ethereal"}},
+                {"contains": {"mood": "atmospheric"}},
+                {"contains": {"mood": "hypnotic"}},
+                {"contains": {"mood": "mystical"}},
+                {"contains": {"mood": "trippy"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Nostalgic", "nostalgic", "Mood", {
+            "name": "Nostalgic",
+            "comment": "Wistful, bittersweet, sentimental — music that takes you back",
+            "any": [
+                {"contains": {"mood": "nostalgic"}},
+                {"contains": {"mood": "bittersweet"}},
+                {"contains": {"mood": "wistful"}},
+                {"contains": {"mood": "sentimental"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Epic & Cinematic", "epic-and-cinematic", "Mood", {
+            "name": "Epic & Cinematic",
+            "comment": "Grand, triumphant, sweeping — your life needs a soundtrack",
+            "any": [
+                {"contains": {"mood": "epic"}},
+                {"contains": {"mood": "cinematic"}},
+                {"contains": {"mood": "triumphant"}},
+                {"contains": {"mood": "heroic"}},
+                {"contains": {"mood": "majestic"}},
+                {"contains": {"mood": "grandiose"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Groovy", "groovy", "Mood", {
+            "name": "Groovy",
+            "comment": "Funky, groovy, rhythmic — get your head nodding",
+            "any": [
+                {"contains": {"mood": "groovy"}},
+                {"contains": {"mood": "funky"}},
+                {"contains": {"mood": "rhythmic"}},
+                {"contains": {"mood": "bouncy"}},
+                {"contains": {"mood": "swagger"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Rebellious", "rebellious", "Mood", {
+            "name": "Rebellious",
+            "comment": "Defiant, rebellious, anarchic — music that fights back",
+            "any": [
+                {"contains": {"mood": "rebellious"}},
+                {"contains": {"mood": "defiant"}},
+                {"contains": {"mood": "anarchic"}},
+                {"contains": {"mood": "provocative"}},
+                {"contains": {"mood": "confrontational"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Spooky", "spooky", "Mood", {
+            "name": "Spooky",
+            "comment": "Creepy, haunting, sinister — perfect for Halloween or 3AM listening",
+            "any": [
+                {"contains": {"mood": "spooky"}},
+                {"contains": {"mood": "creepy"}},
+                {"contains": {"mood": "haunting"}},
+                {"contains": {"mood": "sinister"}},
+                {"contains": {"mood": "scary"}},
+                {"contains": {"mood": "eerie"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Uplifting", "uplifting", "Mood", {
+            "name": "Uplifting",
+            "comment": "Inspirational, hopeful, uplifting — music to lift your spirits",
+            "any": [
+                {"contains": {"mood": "uplifting"}},
+                {"contains": {"mood": "inspirational"}},
+                {"contains": {"mood": "hopeful"}},
+                {"contains": {"mood": "optimistic"}},
+                {"contains": {"mood": "encouraging"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Sexy", "sexy", "Mood", {
+            "name": "Sexy",
+            "comment": "Sultry, seductive, steamy — after-dark listening",
+            "any": [
+                {"contains": {"mood": "sexy"}},
+                {"contains": {"mood": "sultry"}},
+                {"contains": {"mood": "seductive"}},
+                {"contains": {"mood": "steamy"}},
+                {"contains": {"mood": "sensual"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+        ("Playful", "playful", "Mood", {
+            "name": "Playful",
+            "comment": "Quirky, whimsical, fun — music that doesn't take itself seriously",
+            "any": [
+                {"contains": {"mood": "playful"}},
+                {"contains": {"mood": "quirky"}},
+                {"contains": {"mood": "whimsical"}},
+                {"contains": {"mood": "fun"}},
+                {"contains": {"mood": "humorous"}},
+                {"contains": {"mood": "silly"}},
+            ],
+            "sort": "random", "limit": 200,
+        }),
+
+        # ── Mood Fusions ────────────────────────────────────────────
+        ("Happy & Loved", "happy-and-loved", "Mood Fusions", {
+            "name": "Happy & Loved",
+            "comment": "Tracks tagged happy that you've also loved — double the joy",
+            "all": [
+                {"any": [
+                    {"contains": {"mood": "happy"}},
+                    {"contains": {"mood": "cheerful"}},
+                    {"contains": {"mood": "joyful"}},
+                ]},
+                {"is": {"loved": True}},
+            ],
+            "sort": "random", "limit": 100,
+        }),
+        ("Sad & Highly Rated", "sad-and-highly-rated", "Mood Fusions", {
+            "name": "Sad & Highly Rated",
+            "comment": "Beautiful sadness — melancholy tracks you rated 4 or higher",
+            "all": [
+                {"any": [
+                    {"contains": {"mood": "sad"}},
+                    {"contains": {"mood": "melancholy"}},
+                    {"contains": {"mood": "somber"}},
+                ]},
+                {"gt": {"rating": 3}},
+            ],
+            "sort": "rating", "order": "desc", "limit": 100,
+        }),
+        ("Dark & Heavy", "dark-and-heavy", "Mood Fusions", {
+            "name": "Dark & Heavy",
+            "comment": "Dark mood + metal genre — the heaviest, darkest corner of your library",
+            "all": [
+                {"any": [
+                    {"contains": {"mood": "dark"}},
+                    {"contains": {"mood": "ominous"}},
+                    {"contains": {"mood": "aggressive"}},
+                ]},
+                {"contains": {"genre": "metal"}},
+            ],
+            "sort": "random", "limit": 100,
+        }),
+        ("Chill Electronic", "chill-electronic", "Mood Fusions", {
+            "name": "Chill Electronic",
+            "comment": "Relaxing mood meets electronic genre — ambient beats and warm synths",
+            "all": [
+                {"any": [
+                    {"contains": {"mood": "relaxing"}},
+                    {"contains": {"mood": "calm"}},
+                    {"contains": {"mood": "peaceful"}},
+                    {"contains": {"mood": "dreamy"}},
+                ]},
+                {"any": [
+                    {"contains": {"genre": "electronic"}},
+                    {"contains": {"genre": "ambient"}},
+                    {"contains": {"genre": "downtempo"}},
+                ]},
+            ],
+            "sort": "random", "limit": 100,
+        }),
+        ("Moody Discoveries", "moody-discoveries", "Mood Fusions", {
+            "name": "Moody Discoveries",
+            "comment": "Tracks with a mood tag but never played — what vibe are you missing?",
+            "all": [
+                {"notContains": {"mood": ""}},
+                {"is": {"playcount": 0}},
+            ],
+            "sort": "random", "limit": 100,
+        }),
+
+        # ── ReplayGain & Loudness ────────────────────────────────────
+        ("The Loudness War", "the-loudness-war", "ReplayGain & Loudness", {
+            "name": "The Loudness War",
+            "comment": "Tracks with very low ReplayGain — mastered LOUD, brickwalled, no mercy",
+            "all": [{"lt": {"replaygain_track_gain": -12}}],
+            "sort": "replaygain_track_gain", "order": "asc", "limit": 100,
+        }),
+        ("Whisper Quiet", "whisper-quiet", "ReplayGain & Loudness", {
+            "name": "Whisper Quiet",
+            "comment": "Tracks with high ReplayGain — delicately mastered, natural dynamics",
+            "all": [{"gt": {"replaygain_track_gain": 5}}],
+            "sort": "replaygain_track_gain", "order": "desc", "limit": 100,
+        }),
+        ("Dynamic Range Kings", "dynamic-range-kings", "ReplayGain & Loudness", {
+            "name": "Dynamic Range Kings",
+            "comment": "Low peak values with moderate gain — well-mastered with real dynamics",
+            "all": [
+                {"lt": {"replaygain_track_peak": 0.9}},
+                {"gt": {"replaygain_track_gain": -6}},
+            ],
+            "sort": "replaygain_track_peak", "order": "asc", "limit": 100,
+        }),
+        ("Clipping Danger", "clipping-danger", "ReplayGain & Loudness", {
+            "name": "Clipping Danger",
+            "comment": "Tracks with peak at or near 1.0 — pushing the hard limits of digital audio",
+            "all": [{"gt": {"replaygain_track_peak": 0.99}}],
+            "sort": "replaygain_track_peak", "order": "desc", "limit": 100,
+        }),
+        ("Hot Albums", "hot-albums", "ReplayGain & Loudness", {
+            "name": "Hot Albums",
+            "comment": "Albums mastered loud — low album ReplayGain means a hot master",
+            "all": [{"lt": {"replaygain_album_gain": -10}}],
+            "sort": "replaygain_album_gain", "order": "asc", "limit": 100,
+        }),
+        ("Gentle Albums", "gentle-albums", "ReplayGain & Loudness", {
+            "name": "Gentle Albums",
+            "comment": "Albums with high positive gain — mastered with restraint and space",
+            "all": [{"gt": {"replaygain_album_gain": 3}}],
+            "sort": "replaygain_album_gain", "order": "desc", "limit": 100,
+        }),
+        ("The Loud & Loved", "the-loud-and-loved", "ReplayGain & Loudness", {
+            "name": "The Loud & Loved",
+            "comment": "Brickwalled masters you love anyway — loudness war survivors",
+            "all": [
+                {"lt": {"replaygain_track_gain": -10}},
+                {"is": {"loved": True}},
+            ],
+            "sort": "replaygain_track_gain", "order": "asc", "limit": 100,
+        }),
+        ("Audiophile Masters", "audiophile-masters", "ReplayGain & Loudness", {
+            "name": "Audiophile Masters",
+            "comment": "FLAC + low peak + moderate gain + high rating — mastering perfection",
+            "all": [
+                {"is": {"filetype": "flac"}},
+                {"lt": {"replaygain_track_peak": 0.95}},
+                {"gt": {"replaygain_track_gain": -8}},
+                {"gt": {"rating": 3}},
+            ],
+            "sort": "rating", "order": "desc", "limit": 100,
+        }),
+        ("R128 Normalized", "r128-normalized", "ReplayGain & Loudness", {
+            "name": "R128 Normalized",
+            "comment": "Tracks with R128 loudness normalization tags — broadcast-standard levels",
+            "all": [{"isNot": {"r128_track_gain": 0}}],
+            "sort": "random", "limit": 200,
+        }),
+        ("Loudness Outliers", "loudness-outliers", "ReplayGain & Loudness", {
+            "name": "Loudness Outliers",
+            "comment": "Tracks with extreme gain values (> +10 or < -15) — the volume oddballs",
+            "any": [
+                {"gt": {"replaygain_track_gain": 10}},
+                {"lt": {"replaygain_track_gain": -15}},
+            ],
+            "sort": "random", "limit": 100,
+        }),
+        ("Headroom Heroes", "headroom-heroes", "ReplayGain & Loudness", {
+            "name": "Headroom Heroes",
+            "comment": "Tracks with peak well below 1.0 — plenty of headroom, no distortion",
+            "all": [
+                {"lt": {"replaygain_track_peak": 0.8}},
+                {"gt": {"replaygain_track_peak": 0}},
+            ],
+            "sort": "replaygain_track_peak", "order": "asc", "limit": 100,
+        }),
+        ("Volume Crankers", "volume-crankers", "ReplayGain & Loudness", {
+            "name": "Volume Crankers",
+            "comment": "Very quiet tracks needing +8 dB or more gain — turn it up!",
+            "all": [{"gt": {"replaygain_track_gain": 8}}],
+            "sort": "replaygain_track_gain", "order": "desc", "limit": 100,
+        }),
+        ("Album vs Track Mismatch", "album-vs-track-mismatch", "ReplayGain & Loudness", {
+            "name": "Album vs Track Mismatch",
+            "comment": "Tracks where album gain is much different from track gain — the loud/quiet song on the album",
+            "all": [
+                {"lt": {"replaygain_album_gain": -5}},
+                {"gt": {"replaygain_track_gain": 0}},
+            ],
+            "sort": "random", "limit": 100,
+        }),
     ]
 
     def deploy_presets(self) -> None:
