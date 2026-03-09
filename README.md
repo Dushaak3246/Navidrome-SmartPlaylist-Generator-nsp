@@ -1,6 +1,6 @@
 # Navidrome Smart Playlist Creator
 
-A fully guided, interactive CLI tool for creating `.nsp` (Navidrome Smart Playlist) files — no JSON editing, no memorising field names or operator syntax.
+A fully guided, interactive CLI tool for creating `.nsp` (Navidrome Smart Playlist) files — no JSON editing, no memorising field names or operator syntax. Supports **every field and operator** that Navidrome recognises, including nested rule groups and multi-field sorting.
 
 ![Python Version](https://img.shields.io/badge/python-3.8+-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
@@ -19,14 +19,17 @@ This tool guides you through building those JSON rules entirely through numbered
 
 ## Features
 
+- **100+ fields** — every field Navidrome supports, from core metadata to MusicBrainz IDs and ReplayGain values
+- **Nested rule groups** — create sub-groups with their own AND/OR logic (e.g. "loved OR highly rated" inside an AND query)
+- **Playlist operators** — filter by playlist membership with `inPlaylist` / `notInPlaylist`
+- **Multi-field sorting** — sort by multiple fields with individual ascending/descending direction
 - **Fully guided numbered menus** — no typing field names, operators, or syntax
-- **Categorised field browser** — fields grouped into Track Info, File Info, Listening Stats, Library Info, and Extra Tags
+- **12 field categories** — Core Track Info, Artists & People, Album Details, File & Quality, Listening & Favorites, Dates, Text Tags, Numeric Tags, Sort Fields, Identifiers & Technical, MusicBrainz IDs, and Playlist
 - **Plain-English operator descriptions** — e.g. "Is greater than" instead of `gt`
 - **Type-aware value prompts** — booleans become Yes/No, dates show format hints, numerics show contextual examples
 - **Live rules summary** — shows all rules built so far after each addition
-- **Nested logic** — combine rules with `all` (AND) or `any` (OR)
 - **Persistent config** — remembers your playlist directory between sessions
-- **Example playlists** — built-in reference examples to get you started
+- **Example playlists** — built-in reference examples including nested-logic and multi-sort
 - **Beautiful UI** — enhanced display via [`rich`](https://github.com/Textualize/rich) (optional, degrades gracefully)
 
 ---
@@ -82,13 +85,12 @@ Choose **Create a new smart playlist** and the wizard walks you through five ste
 
 1. **Details** — name and optional description
 2. **Rule logic** — ALL must match (AND) or ANY can match (OR), with plain-English explanation
-3. **Rules** — add one or more conditions:
-   - Pick a **category** from a numbered menu (Track Info, File Info, etc.)
-   - Pick a **field** from a numbered list with descriptions
-   - Pick an **operator** — shown in plain English, filtered to match the field's type
-   - Enter a **value** — booleans become Yes/No selections, dates show format hints, numerics show contextual examples
+3. **Rules** — add one or more conditions. For each rule you choose:
+   - **Single rule** or **Rule group** (nested sub-group with its own AND/OR logic)
+   - For single rules: pick a **category** → **field** → **operator** → **value**
+   - For rule groups: choose AND/OR for the sub-group, then add rules inside it (supports infinite nesting)
    - A live summary panel displays all rules built so far after each addition
-4. **Sort order** — choose from a numbered list; ascending/descending presented as a follow-up choice
+4. **Sort order** — choose one or multiple sort fields; each gets its own ascending/descending direction
 5. **Limit** — optionally cap the number of tracks
 
 After completing the wizard, the generated JSON is previewed and you can confirm before saving.
@@ -97,67 +99,178 @@ After completing the wizard, the generated JSON is previewed and you can confirm
 
 ## Fields Reference
 
-Fields are grouped into categories in the tool's menus.
+The tool supports **100+ fields** across 12 categories — every field from Navidrome's query engine (matching [Feishin's NDSongQueryFields](https://github.com/jeffvli/feishin)). Use **View all available fields** from the main menu to browse them interactively.
 
-### Track Info
-
-| Field | Description | Type |
-|---|---|---|
-| `title` | Track title | String |
-| `artist` | Artist name | String |
-| `albumartist` | Album artist | String |
-| `album` | Album name | String |
-| `genre` | Genre | String |
-| `composer` | Composer | String |
-| `year` | Year of release | Numeric |
-| `tracknumber` | Track number | Numeric |
-| `discnumber` | Disc number | Numeric |
-| `duration` | Duration (seconds) | Numeric |
-| `bpm` | Beats per minute | Numeric |
-
-### File Info
+### Core Track Info
 
 | Field | Description | Type |
 |---|---|---|
-| `filetype` | File type (e.g. `flac`, `mp3`, `aac`) | String |
-| `filepath` | Path relative to music library root | String |
-| `bitrate` | Bitrate (kbps) | Numeric |
-| `bitdepth` | Bit depth | Numeric |
-| `size` | File size (bytes) | Numeric |
-| `channels` | Audio channels | Numeric |
-| `hascoverart` | Has cover art | Boolean |
+| `title` | Track title | string |
+| `album` | Album name | string |
+| `artist` | Artist name | string |
+| `albumartist` | Album artist | string |
+| `genre` | Genre | string |
+| `composer` | Composer | string |
+| `year` | Year | number |
+| `track` | Track number | number |
+| `discnumber` | Disc number | number |
+| `duration` | Duration (seconds) | number |
+| `bpm` | Beats per minute | number |
 
-### Listening Stats
-
-| Field | Description | Type |
-|---|---|---|
-| `playcount` | Times played | Numeric |
-| `rating` | Rating (0–5) | Numeric |
-| `loved` | Marked as loved | Boolean |
-| `lastplayed` | Date last played | Date |
-| `dateloved` | Date marked as loved | Date |
-| `daterated` | Date rated | Date |
-
-### Library Info
+### Artists & People
 
 | Field | Description | Type |
 |---|---|---|
-| `dateadded` | Date added to library | Date |
-| `datemodified` | Date file was modified | Date |
-| `compilation` | Part of a compilation | Boolean |
-| `library_id` | Library ID (multi-library setups) | Numeric |
+| `albumartists` | Album artists (multi) | string |
+| `artists` | Artists (multi) | string |
+| `arranger` | Arranger | string |
+| `conductor` | Conductor | string |
+| `director` | Director | string |
+| `djmixer` | DJ mixer | string |
+| `engineer` | Engineer | string |
+| `lyricist` | Lyricist | string |
+| `mixer` | Mixer | string |
+| `performer` | Performer | string |
+| `producer` | Producer | string |
+| `remixer` | Remixer | string |
 
-### Extra Tags
+### Album Details
 
 | Field | Description | Type |
 |---|---|---|
-| `comment` | Comment tag | String |
-| `lyrics` | Lyrics | String |
-| `grouping` | Grouping | String |
-| `discsubtitle` | Disc subtitle | String |
-| `albumtype` | Album type | String |
-| `albumcomment` | Album comment | String |
-| `catalognumber` | Catalog number | String |
+| `albumcomment` | Album comment | string |
+| `albumtype` | Album type | string |
+| `albumversion` | Album version | string |
+| `catalognumber` | Catalog number | string |
+| `compilation` | Is a compilation | boolean |
+| `recordlabel` | Record label | string |
+| `releasecountry` | Release country | string |
+| `releasestatus` | Release status | string |
+| `releasetype` | Release type | string |
+
+### File & Quality
+
+| Field | Description | Type |
+|---|---|---|
+| `filepath` | File path | string |
+| `filetype` | File type (e.g. flac, mp3) | string |
+| `bitrate` | Bitrate (kbps) | number |
+| `bitdepth` | Bit depth | number |
+| `size` | File size (bytes) | number |
+| `channels` | Audio channels | number |
+| `hascoverart` | Has cover art | boolean |
+| `explicitstatus` | Explicit status | string |
+| `encodedby` | Encoded by | string |
+| `encodersettings` | Encoder settings | string |
+
+### Listening & Favorites
+
+| Field | Description | Type |
+|---|---|---|
+| `playcount` | Play count | number |
+| `rating` | Rating (0–5) | number |
+| `loved` | Is favorite / loved | boolean |
+| `lastplayed` | Date last played | date |
+| `dateloved` | Date favorited | date |
+
+### Dates
+
+| Field | Description | Type |
+|---|---|---|
+| `dateadded` | Date added to library | date |
+| `datemodified` | Date file modified | date |
+| `originaldate` | Original release date | date |
+| `originalyear` | Original year | date |
+| `recordingdate` | Recording date | date |
+| `releasedate` | Release date | date |
+
+### Text Tags
+
+| Field | Description | Type |
+|---|---|---|
+| `comment` | Comment | string |
+| `lyrics` | Lyrics | string |
+| `grouping` | Grouping | string |
+| `discsubtitle` | Disc subtitle | string |
+| `subtitle` | Track subtitle | string |
+| `mood` | Mood | string |
+| `movement` | Movement | string |
+| `movementname` | Movement name | string |
+
+### Numeric Tags
+
+| Field | Description | Type |
+|---|---|---|
+| `disctotal` | Total discs | number |
+| `tracktotal` | Total tracks | number |
+| `movementtotal` | Total movements | number |
+| `r128_album_gain` | R128 album gain | number |
+| `r128_track_gain` | R128 track gain | number |
+| `replaygain_album_gain` | ReplayGain album gain | number |
+| `replaygain_album_peak` | ReplayGain album peak | number |
+| `replaygain_track_gain` | ReplayGain track gain | number |
+| `replaygain_track_peak` | ReplayGain track peak | number |
+
+### Sort Fields
+
+| Field | Description | Type |
+|---|---|---|
+| `titlesort` | Sort name | string |
+| `albumsort` | Sort album | string |
+| `albumartistsort` | Sort album artist | string |
+| `albumartistssort` | Sort album artists | string |
+| `artistsort` | Sort artist | string |
+| `artistssort` | Sort artists | string |
+| `composersort` | Sort composer | string |
+| `lyricistsort` | Sort lyricist | string |
+
+### Identifiers & Technical
+
+| Field | Description | Type |
+|---|---|---|
+| `library_id` | Library ID | string |
+| `isrc` | ISRC code | string |
+| `asin` | Amazon ASIN | string |
+| `barcode` | Barcode | string |
+| `key` | Musical key | string |
+| `language` | Language | string |
+| `license` | License | string |
+| `media` | Media type | string |
+| `script` | Script | string |
+| `copyright` | Copyright | string |
+| `website` | Website | string |
+| `work` | Work | string |
+
+### MusicBrainz IDs
+
+| Field | Description | Type |
+|---|---|---|
+| `mbz_album_id` | Album ID | string |
+| `mbz_album_artist_id` | Album Artist ID | string |
+| `mbz_artist_id` | Artist ID | string |
+| `mbz_recording_id` | Recording ID | string |
+| `mbz_release_group_id` | Release Group ID | string |
+| `mbz_release_track_id` | Release Track ID | string |
+| `musicbrainz_arrangerid` | Arranger ID | string |
+| `musicbrainz_composerid` | Composer ID | string |
+| `musicbrainz_conductorid` | Conductor ID | string |
+| `musicbrainz_directorid` | Director ID | string |
+| `musicbrainz_discid` | Disc ID | string |
+| `musicbrainz_djmixerid` | DJ Mixer ID | string |
+| `musicbrainz_engineerid` | Engineer ID | string |
+| `musicbrainz_lyricistid` | Lyricist ID | string |
+| `musicbrainz_mixerid` | Mixer ID | string |
+| `musicbrainz_performerid` | Performer ID | string |
+| `musicbrainz_producerid` | Producer ID | string |
+| `musicbrainz_remixerid` | Remixer ID | string |
+| `musicbrainz_trackid` | Track ID | string |
+| `musicbrainz_workid` | Work ID | string |
+
+### Playlist
+
+| Field | Description | Type |
+|---|---|---|
+| `id` | Playlist (for in/not-in playlist filters) | playlist |
 
 ---
 
@@ -167,39 +280,64 @@ Operators are automatically filtered in the tool to only show the ones valid for
 
 | Operator | Plain-English Label | Applies To |
 |---|---|---|
-| `is` | Is exactly | String, Numeric, Boolean |
-| `isNot` | Is not | String, Numeric, Boolean |
-| `contains` | Contains | String |
-| `notContains` | Does not contain | String |
-| `startsWith` | Starts with | String |
-| `endsWith` | Ends with | String |
-| `gt` | Is greater than | Numeric |
-| `lt` | Is less than | Numeric |
-| `inTheRange` | Is between (range) | Numeric, Date |
-| `inTheLast` | Within the last N days | Date |
-| `notInTheLast` | Not within the last N days | Date |
-| `after` | After a specific date | Date |
-| `before` | Before a specific date | Date |
+| `is` | Is exactly | string, number, boolean, date |
+| `isNot` | Is not | string, number, boolean, date |
+| `contains` | Contains | string, number |
+| `notContains` | Does not contain | string, number |
+| `startsWith` | Starts with | string |
+| `endsWith` | Ends with | string |
+| `gt` | Is greater than | number |
+| `lt` | Is less than | number |
+| `inTheRange` | Is between (range) | number, date |
+| `inTheLast` | Within the last N days | date |
+| `notInTheLast` | Not within the last N days | date |
+| `before` | Before a date | date |
+| `after` | After a date | date |
+| `inPlaylist` | Is in playlist | playlist |
+| `notInPlaylist` | Is not in playlist | playlist |
 
 ---
 
 ## Sorting
 
-The tool presents sort options as a numbered list. Available sort fields:
+The tool presents common sort fields as a numbered list:
 
-`random` · `title` · `artist` · `album` · `year` · `rating` · `playcount` · `lastplayed` · `dateadded` · `duration` · `bitrate`
+`random` · `title` · `album` · `artist` · `albumartist` · `year` · `rating` · `playcount` · `lastplayed` · `dateadded` · `duration` · `bitrate` · `genre` · `bpm` · `track` · `size`
 
 Selecting **Random** shuffles the playlist on every access. All other fields prompt for Ascending or Descending direction.
 
-In the raw JSON:
+### Multi-field sorting
+
+After choosing a sort field and direction, the tool asks if you'd like to add another sort field. Multiple sort fields are combined with `+` (ascending) and `-` (descending) prefixes:
+
+```json
+"sort": "+artist,-year"
+```
+
+Single-field sort uses the traditional format:
 ```json
 "sort": "year",
 "order": "desc"
 ```
-or for shuffle:
+
+---
+
+## Nested Rule Groups
+
+When adding a rule, you can choose **"A rule group"** instead of a single rule. A rule group creates a nested sub-group with its own AND/OR logic inside your main query.
+
+This is essential for complex queries like "80s Favorites" — where you need *(loved OR highly rated)* **AND** *year is 1980–1989*:
+
 ```json
-"sort": "random"
+{
+  "all": [
+    { "any": [{ "is": { "loved": true } }, { "gt": { "rating": 3 } }] },
+    { "inTheRange": { "year": [1980, 1989] } }
+  ]
+}
 ```
+
+Rule groups can be nested to any depth.
 
 ---
 
@@ -220,11 +358,12 @@ Tracks played in the last 30 days, most recent first:
 }
 ```
 
-### 80s Favorites
-Loved or highly-rated songs from the 1980s:
+### 80s Favorites (nested logic)
+Loved or highly-rated songs from the 1980s — uses a nested `any` group inside `all`:
 ```json
 {
   "name": "80s Favorites",
+  "comment": "Loved or highly-rated songs from the 1980s",
   "all": [
     { "any": [{ "is": { "loved": true } }, { "gt": { "rating": 3 } }] },
     { "inTheRange": { "year": [1980, 1989] } }
@@ -262,6 +401,29 @@ All loved tracks, newest-loved first:
 }
 ```
 
+### Never Played
+Tracks you haven't listened to yet:
+```json
+{
+  "name": "Never Played",
+  "comment": "Tracks you haven't played yet",
+  "all": [{ "is": { "playcount": 0 } }],
+  "sort": "random",
+  "limit": 200
+}
+```
+
+### Multi-sort Example
+Sorted by artist ascending, then year descending:
+```json
+{
+  "name": "By Artist then Year",
+  "comment": "Sorted by artist ascending, then year descending",
+  "all": [{ "gt": { "playcount": -1 } }],
+  "sort": "+artist,-year"
+}
+```
+
 ---
 
 ## How Navidrome Imports Playlists
@@ -287,7 +449,9 @@ The tool saves your playlist directory to `~/.navidrome_playlist_config.json` so
 - Dates must be in `YYYY-MM-DD` format — the tool shows this hint automatically
 - Boolean fields (`loved`, `hascoverart`, `compilation`) are presented as Yes/No selections — no typing required
 - `filepath` is relative to your music library root (no leading `/music` prefix)
-- The `_` character may be ignored in `contains` / `endsWith` conditions — adjust accordingly
+- `library_id` is a string type (not numeric) — enter the ID as text
+- Track number field is `track` (not `tracknumber`)
+- Playlist operators (`inPlaylist` / `notInPlaylist`) require the playlist ID from Navidrome (found in the URL: `/playlists/<ID>`)
 
 ---
 

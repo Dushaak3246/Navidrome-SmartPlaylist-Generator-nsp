@@ -32,57 +32,148 @@ class SmartPlaylistCreator:
         self.config_file = Path.home() / ".navidrome_playlist_config.json"
         self.playlist_dir = self.load_config()
 
+        # Complete field list matching Navidrome / Feishin NDSongQueryFields
         # (field_key, description, type)
         self.fields: Dict[str, List[Tuple[str, str, str]]] = {
-            "Track Info": [
-                ("title",        "Track title",                       "String"),
-                ("artist",       "Artist name",                       "String"),
-                ("albumartist",  "Album artist",                      "String"),
-                ("album",        "Album name",                        "String"),
-                ("genre",        "Genre",                             "String"),
-                ("composer",     "Composer",                          "String"),
-                ("year",         "Year of release",                   "Numeric"),
-                ("tracknumber",  "Track number",                      "Numeric"),
-                ("discnumber",   "Disc number",                       "Numeric"),
-                ("duration",     "Duration (seconds)",                "Numeric"),
-                ("bpm",          "Beats per minute",                  "Numeric"),
+            "Core Track Info": [
+                ("title",        "Track title",            "string"),
+                ("album",        "Album name",             "string"),
+                ("artist",       "Artist name",            "string"),
+                ("albumartist",  "Album artist",           "string"),
+                ("genre",        "Genre",                  "string"),
+                ("composer",     "Composer",               "string"),
+                ("year",         "Year",                   "number"),
+                ("track",        "Track number",           "number"),
+                ("discnumber",   "Disc number",            "number"),
+                ("duration",     "Duration (seconds)",     "number"),
+                ("bpm",          "Beats per minute",       "number"),
             ],
-            "File Info": [
-                ("filetype",     "File type  (e.g. flac, mp3, aac)", "String"),
-                ("filepath",     "File path (relative to music dir)","String"),
-                ("bitrate",      "Bitrate (kbps)",                   "Numeric"),
-                ("bitdepth",     "Bit depth",                        "Numeric"),
-                ("size",         "File size (bytes)",                "Numeric"),
-                ("channels",     "Audio channels",                   "Numeric"),
-                ("hascoverart",  "Has cover art",                    "Boolean"),
+            "Artists & People": [
+                ("albumartists", "Album artists (multi)",  "string"),
+                ("artists",      "Artists (multi)",        "string"),
+                ("arranger",     "Arranger",               "string"),
+                ("conductor",    "Conductor",              "string"),
+                ("director",     "Director",               "string"),
+                ("djmixer",      "DJ mixer",               "string"),
+                ("engineer",     "Engineer",               "string"),
+                ("lyricist",     "Lyricist",               "string"),
+                ("mixer",        "Mixer",                  "string"),
+                ("performer",    "Performer",              "string"),
+                ("producer",     "Producer",               "string"),
+                ("remixer",      "Remixer",                "string"),
             ],
-            "Listening Stats": [
-                ("playcount",    "Times played",                     "Numeric"),
-                ("rating",       "Rating (0-5)",                     "Numeric"),
-                ("loved",        "Marked as loved",                  "Boolean"),
-                ("lastplayed",   "Date last played",                 "Date"),
-                ("dateloved",    "Date marked as loved",             "Date"),
-                ("daterated",    "Date rated",                       "Date"),
+            "Album Details": [
+                ("albumcomment",    "Album comment",       "string"),
+                ("albumtype",       "Album type",          "string"),
+                ("albumversion",    "Album version",       "string"),
+                ("catalognumber",   "Catalog number",      "string"),
+                ("compilation",     "Is a compilation",    "boolean"),
+                ("recordlabel",     "Record label",        "string"),
+                ("releasecountry",  "Release country",     "string"),
+                ("releasestatus",   "Release status",      "string"),
+                ("releasetype",     "Release type",        "string"),
             ],
-            "Library Info": [
-                ("dateadded",    "Date added to library",            "Date"),
-                ("datemodified", "Date file was modified",           "Date"),
-                ("compilation",  "Part of a compilation",           "Boolean"),
-                ("library_id",   "Library ID (multi-library)",      "Numeric"),
+            "File & Quality": [
+                ("filepath",         "File path",                     "string"),
+                ("filetype",         "File type (e.g. flac, mp3)",    "string"),
+                ("bitrate",          "Bitrate (kbps)",                "number"),
+                ("bitdepth",         "Bit depth",                     "number"),
+                ("size",             "File size (bytes)",             "number"),
+                ("channels",         "Audio channels",                "number"),
+                ("hascoverart",      "Has cover art",                 "boolean"),
+                ("explicitstatus",   "Explicit status",               "string"),
+                ("encodedby",        "Encoded by",                    "string"),
+                ("encodersettings",  "Encoder settings",              "string"),
             ],
-            "Extra Tags": [
-                ("comment",       "Comment tag",    "String"),
-                ("lyrics",        "Lyrics",         "String"),
-                ("grouping",      "Grouping",       "String"),
-                ("discsubtitle",  "Disc subtitle",  "String"),
-                ("albumtype",     "Album type",     "String"),
-                ("albumcomment",  "Album comment",  "String"),
-                ("catalognumber", "Catalog number", "String"),
+            "Listening & Favorites": [
+                ("playcount",  "Play count",            "number"),
+                ("rating",     "Rating (0-5)",          "number"),
+                ("loved",      "Is favorite / loved",   "boolean"),
+                ("lastplayed", "Date last played",      "date"),
+                ("dateloved",  "Date favorited",        "date"),
+            ],
+            "Dates": [
+                ("dateadded",      "Date added to library",     "date"),
+                ("datemodified",   "Date file modified",        "date"),
+                ("originaldate",   "Original release date",     "date"),
+                ("originalyear",   "Original year",             "date"),
+                ("recordingdate",  "Recording date",            "date"),
+                ("releasedate",    "Release date",              "date"),
+            ],
+            "Text Tags": [
+                ("comment",       "Comment",           "string"),
+                ("lyrics",        "Lyrics",            "string"),
+                ("grouping",      "Grouping",          "string"),
+                ("discsubtitle",  "Disc subtitle",     "string"),
+                ("subtitle",      "Track subtitle",    "string"),
+                ("mood",          "Mood",              "string"),
+                ("movement",      "Movement",          "string"),
+                ("movementname",  "Movement name",     "string"),
+            ],
+            "Numeric Tags": [
+                ("disctotal",              "Total discs",              "number"),
+                ("tracktotal",             "Total tracks",             "number"),
+                ("movementtotal",          "Total movements",          "number"),
+                ("r128_album_gain",        "R128 album gain",          "number"),
+                ("r128_track_gain",        "R128 track gain",          "number"),
+                ("replaygain_album_gain",  "ReplayGain album gain",    "number"),
+                ("replaygain_album_peak",  "ReplayGain album peak",    "number"),
+                ("replaygain_track_gain",  "ReplayGain track gain",    "number"),
+                ("replaygain_track_peak",  "ReplayGain track peak",    "number"),
+            ],
+            "Sort Fields": [
+                ("titlesort",          "Sort name",            "string"),
+                ("albumsort",          "Sort album",           "string"),
+                ("albumartistsort",    "Sort album artist",    "string"),
+                ("albumartistssort",   "Sort album artists",   "string"),
+                ("artistsort",         "Sort artist",          "string"),
+                ("artistssort",        "Sort artists",         "string"),
+                ("composersort",       "Sort composer",        "string"),
+                ("lyricistsort",       "Sort lyricist",        "string"),
+            ],
+            "Identifiers & Technical": [
+                ("library_id",  "Library ID",          "string"),
+                ("isrc",        "ISRC code",           "string"),
+                ("asin",        "Amazon ASIN",         "string"),
+                ("barcode",     "Barcode",             "string"),
+                ("key",         "Musical key",         "string"),
+                ("language",    "Language",             "string"),
+                ("license",     "License",             "string"),
+                ("media",       "Media type",          "string"),
+                ("script",      "Script",              "string"),
+                ("copyright",   "Copyright",           "string"),
+                ("website",     "Website",             "string"),
+                ("work",        "Work",                "string"),
+            ],
+            "MusicBrainz IDs": [
+                ("mbz_album_id",              "Album ID",           "string"),
+                ("mbz_album_artist_id",       "Album Artist ID",    "string"),
+                ("mbz_artist_id",             "Artist ID",          "string"),
+                ("mbz_recording_id",          "Recording ID",       "string"),
+                ("mbz_release_group_id",      "Release Group ID",   "string"),
+                ("mbz_release_track_id",      "Release Track ID",   "string"),
+                ("musicbrainz_arrangerid",    "Arranger ID",        "string"),
+                ("musicbrainz_composerid",    "Composer ID",        "string"),
+                ("musicbrainz_conductorid",   "Conductor ID",       "string"),
+                ("musicbrainz_directorid",    "Director ID",        "string"),
+                ("musicbrainz_discid",        "Disc ID",            "string"),
+                ("musicbrainz_djmixerid",     "DJ Mixer ID",        "string"),
+                ("musicbrainz_engineerid",    "Engineer ID",        "string"),
+                ("musicbrainz_lyricistid",    "Lyricist ID",        "string"),
+                ("musicbrainz_mixerid",       "Mixer ID",           "string"),
+                ("musicbrainz_performerid",   "Performer ID",       "string"),
+                ("musicbrainz_producerid",    "Producer ID",        "string"),
+                ("musicbrainz_remixerid",     "Remixer ID",         "string"),
+                ("musicbrainz_trackid",       "Track ID",           "string"),
+                ("musicbrainz_workid",        "Work ID",            "string"),
+            ],
+            "Playlist": [
+                ("id", "Playlist (for in/not-in playlist filters)", "playlist"),
             ],
         }
 
         self.operators: Dict[str, List[Tuple[str, str]]] = {
-            "String": [
+            "string": [
                 ("is",           "Is exactly"),
                 ("isNot",        "Is not"),
                 ("contains",     "Contains"),
@@ -90,37 +181,51 @@ class SmartPlaylistCreator:
                 ("startsWith",   "Starts with"),
                 ("endsWith",     "Ends with"),
             ],
-            "Numeric": [
-                ("is",          "Is exactly"),
-                ("isNot",       "Is not"),
-                ("gt",          "Is greater than"),
-                ("lt",          "Is less than"),
-                ("inTheRange",  "Is between (range)"),
+            "number": [
+                ("is",           "Is exactly"),
+                ("isNot",        "Is not"),
+                ("contains",     "Contains"),
+                ("notContains",  "Does not contain"),
+                ("gt",           "Is greater than"),
+                ("lt",           "Is less than"),
+                ("inTheRange",   "Is between (range)"),
             ],
-            "Boolean": [
-                ("is",          "Is true / false"),
+            "boolean": [
+                ("is",    "Is"),
+                ("isNot", "Is not"),
             ],
-            "Date": [
-                ("inTheLast",    "Within the last N days"),
-                ("notInTheLast", "Not within the last N days"),
-                ("after",        "After a specific date"),
-                ("before",       "Before a specific date"),
-                ("inTheRange",   "Between two dates"),
+            "date": [
+                ("is",            "Is exactly (date)"),
+                ("isNot",         "Is not (date)"),
+                ("before",        "Before a date"),
+                ("after",         "After a date"),
+                ("inTheLast",     "Within the last N days"),
+                ("notInTheLast",  "Not within the last N days"),
+                ("inTheRange",    "Between two dates"),
+            ],
+            "playlist": [
+                ("inPlaylist",     "Is in playlist"),
+                ("notInPlaylist",  "Is not in playlist"),
             ],
         }
 
         self.sort_options: List[Tuple[str, str]] = [
-            ("random",     "Random (shuffle every time)"),
-            ("title",      "Title"),
-            ("artist",     "Artist"),
-            ("album",      "Album"),
-            ("year",       "Year"),
-            ("rating",     "Rating"),
-            ("playcount",  "Play count"),
-            ("lastplayed", "Last played"),
-            ("dateadded",  "Date added"),
-            ("duration",   "Duration"),
-            ("bitrate",    "Bitrate"),
+            ("random",      "Random (shuffle)"),
+            ("title",       "Title"),
+            ("album",       "Album"),
+            ("artist",      "Artist"),
+            ("albumartist", "Album Artist"),
+            ("year",        "Year"),
+            ("rating",      "Rating"),
+            ("playcount",   "Play Count"),
+            ("lastplayed",  "Last Played"),
+            ("dateadded",   "Date Added"),
+            ("duration",    "Duration"),
+            ("bitrate",     "Bitrate"),
+            ("genre",       "Genre"),
+            ("bpm",         "BPM"),
+            ("track",       "Track Number"),
+            ("size",        "File Size"),
         ]
 
     # ── Output helpers ────────────────────────────────────────────────────────
@@ -272,14 +377,30 @@ class SmartPlaylistCreator:
 
     # ── Condition builder ─────────────────────────────────────────────────────
 
-    def build_condition(self) -> Optional[Dict[str, Any]]:
-        """Guide the user through building one rule. Returns None if cancelled."""
-        self.rule("Add a Rule")
+    def build_condition(self, depth: int = 0) -> Optional[Dict[str, Any]]:
+        """Guide the user through building one rule or nested rule group."""
+        self.rule(f"{'Sub-' * depth}Add a Rule")
 
-        # Step 1 — Category (back = cancel adding this rule)
+        what = self.select_option(
+            "What would you like to add?",
+            [
+                ("rule",  "A single rule  [dim](e.g. genre is 'Rock')[/dim]"),
+                ("group", "A rule group    [dim](nested AND/OR sub-group)[/dim]"),
+            ],
+            allow_back=True,
+        )
+        if what is None:
+            return None
+
+        if what == "group":
+            return self._build_rule_group(depth + 1)
+
+        # ── Single rule: Category → Field → Operator → Value ──
+
+        # Step 1 — Category
         cat_options: List[Tuple[str, str]] = [(c, c) for c in self.fields]
         category = self.select_option(
-            "What kind of field do you want to filter on?",
+            "Choose a field category:",
             cat_options,
             allow_back=True,
         )
@@ -292,17 +413,32 @@ class SmartPlaylistCreator:
             (key, f"{desc}  [dim]({ftype})[/dim]")
             for key, desc, ftype in field_entries
         ]
-        field_key: str = self.select_option(f"Choose a field  [dim][{category}][/dim]:", f_options)  # type: ignore
+        field_key = self.select_option(
+            f"Choose a field  [dim][{category}][/dim]:",
+            f_options,
+            allow_back=True,
+        )
+        if field_key is None:
+            return None
+        field_key = str(field_key)
+
         _, field_label, field_type = next(
             (k, d, t) for k, d, t in field_entries if k == field_key
         )
         self.out(f"\n  [cyan]Field:[/cyan] {field_label}  [dim]({field_type})[/dim]")
 
         # Step 3 — Operator
-        op_entries = self.operators.get(field_type, self.operators["String"])
-        operator: str = self.select_option("Choose a condition:", list(op_entries))  # type: ignore
+        op_entries = self.operators.get(field_type, self.operators["string"])
+        operator = self.select_option(
+            "Choose a condition:",
+            list(op_entries),
+            allow_back=True,
+        )
+        if operator is None:
+            return None
+        operator = str(operator)
         op_label = next(d for k, d in op_entries if k == operator)
-        self.out(f"  [cyan]Condition:[/cyan] {field_label} -> {op_label}\n")
+        self.out(f"  [cyan]Condition:[/cyan] {field_label} -> {op_label}")
 
         # Step 4 — Value
         value = self._prompt_value(field_key, field_label, field_type, operator)
@@ -311,15 +447,53 @@ class SmartPlaylistCreator:
         self.out(f"\n[bold green]Rule added:[/bold green] [dim]{json.dumps(condition)}[/dim]")
         return condition
 
+    def _build_rule_group(self, depth: int = 1) -> Optional[Dict[str, Any]]:
+        """Build a nested rule group (sub-group with its own AND/OR logic)."""
+        self.out(
+            "\n[dim]A rule group lets you nest rules with their own AND/OR logic.\n"
+            "For example: (artist is 'X' OR artist is 'Y') as part of a larger AND query.[/dim]\n"
+        )
+        logic = self.select_option(
+            "Logic for this sub-group:",
+            [
+                ("all", "[bold]ALL[/bold] must match   [dim](AND)[/dim]"),
+                ("any", "[bold]ANY[/bold] can match    [dim](OR)[/dim]"),
+            ],
+        )
+        logic = str(logic)
+
+        conditions: List[Dict[str, Any]] = []
+        while True:
+            condition = self.build_condition(depth)
+            if condition:
+                conditions.append(condition)
+            if not conditions:
+                self.out("[yellow]You need at least one rule in this group.[/yellow]")
+                continue
+            self._show_conditions_summary(conditions, logic)
+            if not self.confirm("Add another rule to this sub-group?", default=False):
+                break
+
+        if not conditions:
+            return None
+        return {logic: conditions}
+
     def _prompt_value(self, field: str, label: str, ftype: str, operator: str) -> Any:
         """Prompt for a value with type-appropriate guidance."""
 
-        if ftype == "Boolean":
+        if ftype == "boolean":
             result = self.select_option(
                 f"Value for \"{label}\":",
                 [("__true__", "Yes / True"), ("__false__", "No / False")],
             )
             return result == "__true__"
+
+        if ftype == "playlist":
+            self.out(
+                "[dim]Enter the playlist ID from Navidrome.\n"
+                "You can find it in the URL when viewing a playlist: /playlists/<ID>[/dim]"
+            )
+            return self.prompt("Playlist ID")
 
         if operator in ("inTheLast", "notInTheLast"):
             self.out("[dim]How many days back?  (e.g. 7 = last week · 30 = last month · 365 = last year)[/dim]")
@@ -330,7 +504,7 @@ class SmartPlaylistCreator:
                 except ValueError:
                     self.out("[red]Please enter a whole number.[/red]")
 
-        if operator == "inTheRange" and ftype == "Numeric":
+        if operator == "inTheRange" and ftype == "number":
             self.out(f"[dim]Enter the start and end values for \"{label}\".[/dim]")
             while True:
                 try:
@@ -338,26 +512,30 @@ class SmartPlaylistCreator:
                 except ValueError:
                     self.out("[red]Please enter whole numbers.[/red]")
 
-        if operator == "inTheRange" and ftype == "Date":
+        if operator == "inTheRange" and ftype == "date":
             self.out("[dim]Dates must be in YYYY-MM-DD format.[/dim]")
             return [
                 self.prompt("From date", default="2020-01-01"),
                 self.prompt("To date",   default="2025-12-31"),
             ]
 
-        if ftype == "Date":
+        if ftype == "date":
             self.out("[dim]Format: YYYY-MM-DD  (e.g. 2024-06-15)[/dim]")
             return self.prompt("Date")
 
-        if ftype == "Numeric":
+        if ftype == "number":
             hints = {
-                "year":       "e.g. 1990",
-                "rating":     "0 to 5",
-                "playcount":  "e.g. 10",
-                "bitrate":    "e.g. 320 for MP3, 900+ for lossless",
-                "duration":   "in seconds  (e.g. 180 = 3 min)",
-                "bpm":        "e.g. 120",
-                "library_id": "e.g. 1 or 2",
+                "year":        "e.g. 1990",
+                "rating":      "0 to 5",
+                "playcount":   "e.g. 10",
+                "bitrate":     "e.g. 320 for MP3, 900+ for lossless",
+                "duration":    "in seconds  (e.g. 180 = 3 min)",
+                "bpm":         "e.g. 120",
+                "track":       "e.g. 1",
+                "discnumber":  "e.g. 1",
+                "size":        "in bytes  (e.g. 10000000 ~ 10 MB)",
+                "channels":    "e.g. 2 for stereo",
+                "bitdepth":    "e.g. 16, 24, 32",
             }
             if field in hints:
                 self.out(f"[dim]{hints[field]}[/dim]")
@@ -370,11 +548,17 @@ class SmartPlaylistCreator:
 
         # String
         examples = {
-            "filetype":    "e.g. flac · mp3 · aac · ogg",
-            "artist":      "e.g. Geto Boys",
-            "albumartist": "e.g. Geto Boys",
-            "genre":       "e.g. Hip-Hop",
-            "filepath":    "relative to music folder,  e.g. G/Geto Boys",
+            "filetype":       "e.g. flac · mp3 · aac · ogg",
+            "artist":         "e.g. Geto Boys",
+            "albumartist":    "e.g. Geto Boys",
+            "genre":          "e.g. Hip-Hop",
+            "filepath":       "relative to music folder,  e.g. G/Geto Boys",
+            "language":       "e.g. eng, fra, deu",
+            "key":            "e.g. Cmaj, Amin",
+            "releasetype":    "e.g. album, single, ep, compilation",
+            "releasestatus":  "e.g. official, promotional, bootleg",
+            "releasecountry": "e.g. US, GB, DE",
+            "explicitstatus": "e.g. explicit, clean",
         }
         if field in examples:
             self.out(f"[dim]{examples[field]}[/dim]")
@@ -383,7 +567,7 @@ class SmartPlaylistCreator:
     def _show_conditions_summary(self, conditions: List[Dict], logic: str) -> None:
         if not conditions:
             return
-        logic_label = "ALL rules must match" if logic == "all" else "ANY one rule can match"
+        logic_label = "ALL must match" if logic == "all" else "ANY can match"
         lines = "\n".join(f"  {i}. {json.dumps(c)}" for i, c in enumerate(conditions, 1))
         self.panel(f"Logic: [bold]{logic_label}[/bold]\n\n{lines}", title="Rules so far")
 
@@ -417,10 +601,14 @@ class SmartPlaylistCreator:
                 ("any", "[bold]ANY[/bold] can match    [dim](OR  - more inclusive)[/dim]"),
             ],
         )  # type: ignore
+        logic = str(logic)
 
         # ── Conditions
         self.rule("Build Rules")
-        self.out("\n[dim]Rules decide which tracks are included. You need at least one.[/dim]\n")
+        self.out(
+            "\n[dim]Rules decide which tracks are included. You need at least one.\n"
+            "You can add single rules or nested groups (sub-AND/OR logic).[/dim]\n"
+        )
         conditions: List[Dict[str, Any]] = []
 
         while True:
@@ -439,21 +627,40 @@ class SmartPlaylistCreator:
         # ── Sorting
         self.rule("Sort Order")
         self.out("\n[dim]How should tracks be ordered in the playlist?[/dim]")
-        sort_key: str = self.select_option("Sort by:", self.sort_options)  # type: ignore
 
-        if sort_key == "random":
-            playlist["sort"] = "random"
-        else:
-            sort_label = strip_markup(next(lbl for k, lbl in self.sort_options if k == sort_key))
-            direction: str = self.select_option(
-                f"Direction for \"{sort_label}\":",
+        sort_parts: List[str] = []
+        while True:
+            sort_key = self.select_option("Sort by:", self.sort_options)
+            sort_key = str(sort_key)
+
+            if sort_key == "random":
+                sort_parts = ["random"]
+                break
+
+            direction = self.select_option(
+                f"Direction for \"{sort_key}\":",
                 [
-                    ("desc", "Descending  [dim](newest / highest first)[/dim]"),
                     ("asc",  "Ascending   [dim](oldest / lowest first)[/dim]"),
+                    ("desc", "Descending  [dim](newest / highest first)[/dim]"),
                 ],
-            )  # type: ignore
-            playlist["sort"] = sort_key
-            playlist["order"] = direction
+            )
+            direction = str(direction)
+            prefix_char = "-" if direction == "desc" else "+"
+            sort_parts.append(f"{prefix_char}{sort_key}")
+
+            if not self.confirm("Add another sort field?", default=False):
+                break
+
+        if len(sort_parts) == 1:
+            if sort_parts[0] == "random":
+                playlist["sort"] = "random"
+            else:
+                field = sort_parts[0].lstrip("+-")
+                is_desc = sort_parts[0].startswith("-")
+                playlist["sort"] = field
+                playlist["order"] = "desc" if is_desc else "asc"
+        else:
+            playlist["sort"] = ",".join(sort_parts)
 
         # ── Limit
         self.rule("Track Limit")
@@ -515,8 +722,9 @@ class SmartPlaylistCreator:
                 "all": [{"inTheLast": {"lastplayed": 30}}],
                 "sort": "lastplayed", "order": "desc", "limit": 100,
             }),
-            ("80s Favorites", {
+            ("80s Favorites (nested logic)", {
                 "name": "80s Favorites",
+                "comment": "Loved or highly-rated songs from the 1980s",
                 "all": [
                     {"any": [{"is": {"loved": True}}, {"gt": {"rating": 3}}]},
                     {"inTheRange": {"year": [1980, 1989]}},
@@ -534,6 +742,18 @@ class SmartPlaylistCreator:
                 "all": [{"is": {"loved": True}}],
                 "sort": "dateloved", "order": "desc", "limit": 500,
             }),
+            ("Never Played", {
+                "name": "Never Played",
+                "comment": "Tracks you haven't played yet",
+                "all": [{"is": {"playcount": 0}}],
+                "sort": "random", "limit": 200,
+            }),
+            ("Multi-sort Example", {
+                "name": "By Artist then Year",
+                "comment": "Sorted by artist ascending, then year descending",
+                "all": [{"gt": {"playcount": -1}}],
+                "sort": "+artist,-year",
+            }),
         ]
         self.rule("Example Playlists")
         for title, data in examples:
@@ -546,7 +766,7 @@ class SmartPlaylistCreator:
         if RICH_AVAILABLE and self.console:
             for category, entries in self.fields.items():
                 t = Table(title=category, show_header=True, header_style="bold magenta", box=None)
-                t.add_column("Field",       style="cyan", width=18)
+                t.add_column("Field",       style="cyan", width=30)
                 t.add_column("Description", style="white")
                 t.add_column("Type",        style="dim",  width=10)
                 for key, desc, ftype in entries:
@@ -557,7 +777,7 @@ class SmartPlaylistCreator:
             for category, entries in self.fields.items():
                 print(f"\n{category}:")
                 for key, desc, ftype in entries:
-                    print(f"  {key:<20} {desc} ({ftype})")
+                    print(f"  {key:<30} {desc} ({ftype})")
 
     # ── Main menu ─────────────────────────────────────────────────────────────
 
